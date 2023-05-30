@@ -46,6 +46,15 @@ def build_heatmap():
 
     # Create a heatmap using Plotly Express
     fig = px.imshow(pivot_df, color_continuous_scale='reds', labels=dict(color="Mortality rate (%)"))
+    
+    annotations = []
+    for i, row in enumerate(pivot_df.values):
+        for j, value in enumerate(row):
+            annotations.append(dict(x=j, y=i, text=str(round(value*100, 2))+'%', showarrow=False))
+    fig.update_layout(annotations=annotations)
+
+    fig.update_xaxes(side="top")
+    fig.update_layout(height=600, width=800)
     fig.update_xaxes(side="top")
     fig.update_layout(height=600, width=800)
     
