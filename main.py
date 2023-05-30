@@ -20,7 +20,6 @@ df['Age'] = pd.cut(df['Age'], bins=bins, labels=labels)
 agg_df = df.groupby('Race').agg(malignancy_rate=('A Stage', lambda x: sum(x == 'Distant') / len(x) * 100),
                                     avg_tumor_size=('Tumor Size', 'mean')).reset_index()
 grouped_df = agg_df.sort_values(by=['Race'], key=lambda x: x.map({v: i for i, v in enumerate(['Other', 'White', 'Black'])}))
-grouped_df
 
 def build_st_query_for_line_charts(title: str, options: list):
     feature = st.radio(f"Select {title}", options)
