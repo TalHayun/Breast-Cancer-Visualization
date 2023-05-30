@@ -3,6 +3,7 @@ import streamlit as st
 import altair as alt
 import seaborn as sns
 import plotly.express as px
+import plotly.graph_objects as go
 
 
 df = pd.read_csv('Breast_Cancer.csv')
