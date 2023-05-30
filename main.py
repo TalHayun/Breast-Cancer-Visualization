@@ -84,7 +84,7 @@ def figure2():
       barmode='group',
       bargap=0.5  # Adjust the spacing between the bars
   )
-
+  fig.show()
 
 
 st.title('Visualization final project')
