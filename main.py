@@ -103,5 +103,5 @@ def figure2():
 
 st.title('Visualization final project')
 build_heatmap()
-figure2()
+figure2(st)
 graph_each_feature()
