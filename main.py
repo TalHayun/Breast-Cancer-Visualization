@@ -86,7 +86,7 @@ def figure2():
   ))
 
   fig.update_layout(
-      title=dict(text='Malignancy Rate and Average Tumor Size by Race', x=0.5),
+      title=dict(text='Malignancy Rate and Average Tumor Size by Race'),
       xaxis=dict(title='Race',  title_font=dict(size=21)),
       yaxis=dict(title='Malignancy Rate (%)'),
       yaxis2=dict(title='Average Tumor Size (mm)', overlaying='y', side='right'),
