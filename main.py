@@ -50,7 +50,7 @@ def build_heatmap():
     annotations = []
     for i, row in enumerate(pivot_df.values):
         for j, value in enumerate(row):
-            annotations.append(dict(x=j, y=i, text=str(round(value*100, 2))+'%', showarrow=False))
+            annotations.append(dict(x=j, y=i, text=str(round(value*100, 2))+'%', showarrow=False, font=dict(color="black")))
     fig.update_layout(annotations=annotations)
 
     fig.update_xaxes(side="top")
