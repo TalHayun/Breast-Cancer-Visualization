@@ -98,7 +98,8 @@ def figure2():
   
   def graph_each_feature(st):
     name_list = ['Race', 'Age', 'Marital Status']
-    st.write('You selected:', name_list)
+    selected_options = st.multiselect("Select options", name_list)
+    st.write('You selected:', selected_options)
 
 st.title('Visualization final project')
 build_heatmap()
