@@ -46,8 +46,42 @@ def build_heatmap():
     
     # Display the heatmap in Streamlit
     st.plotly_chart(fig)
+    
+def figure2():
+  
+  fig = go.Figure()
+
+  fig.add_trace(go.Bar(
+      x=grouped_df['Race'],
+      y=grouped_df['malignancy_rate'],
+      name='Malignancy Rate',
+      yaxis='y',
+      offsetgroup=0,
+      width=0.25,
+      marker=dict(color='salmon')
+  ))
+
+  fig.add_trace(go.Bar(
+      x=grouped_df['Race'],
+      y=grouped_df['avg_tumor_size'],
+      name='Average Tumor Size',
+      yaxis='y2',
+      offsetgroup=1,
+      width=0.25,
+      marker=dict(color='lightseagreen')
+  ))
+
+  fig.update_layout(
+      title=dict(text='Malignancy Rate and Average Tumor Size by Race', x=0.5),
+      xaxis=dict(title='Race',  title_font=dict(size=21)),
+      yaxis=dict(title='Malignancy Rate (%)'),
+      yaxis2=dict(title='Average Tumor Size (mm)', overlaying='y', side='right'),
+      barmode='group',
+      bargap=0.5  # Adjust the spacing between the bars
+  )
 
 
 
 st.title('Visualization final project')
 build_heatmap()
+figure2()
