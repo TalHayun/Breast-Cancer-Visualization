@@ -96,7 +96,7 @@ def figure2():
   st.plotly_chart(fig)
   
   
-  def graph_each_feature():
+  def graph_each_feature(st):
     name_list = ['Race', 'Age', 'Marital Status']
     selected_options = st.multiselect("Select options", name_list)
     return selected_options
