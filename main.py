@@ -94,8 +94,16 @@ def figure2():
       bargap=0.5  # Adjust the spacing between the bars
   )
   st.plotly_chart(fig)
+  
+  
+  def graph_each_feature():
+    name_list = ['Race', 'Age', 'Marital Status']
+    selected_options = st.multiselect("Select options", name_list)
+    st.write("Selected options:", selected_options)
 
+    
 
 st.title('Visualization final project')
 build_heatmap()
 figure2()
+graph_each_feature()
