@@ -102,7 +102,7 @@ def graph_each_feature():
   if selected_feature == "Age":
     
     avg_survival_by_age = df.groupby("Age")["Survival Months"].mean().reset_index()
-    
+    print(avg_survival_by_age)
     plt.scatter(avg_survival_by_age["Age"], avg_survival_by_age["Survival Months"])
     plt.xlabel("Age (years)")
     plt.ylabel("Average Survival Months")
