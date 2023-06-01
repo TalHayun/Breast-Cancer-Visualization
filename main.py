@@ -97,10 +97,23 @@ def figure2():
   
   
   def graph_each_feature():
-    col1, col2, col3 = st.columns(3)
+    selected_feature = st.selectbox("Select feature", df.columns)
+
+    if selected_feature == "Age":
+        # Group the data by age and calculate the average survival months
+        avg_survival_by_age = df.groupby("Age")["Survival Months"].mean().reset_index()
+
+        # Create the scatter plot
+        plt.scatter(avg_survival_by_age["Age"], avg_survival_by_age["Survival Months"])
+        plt.xlabel("Age (years)")
+        plt.ylabel("Average Survival Months")
+        plt.title("Average Survival Months by Age")
+        plt.grid(True)
+
+    # Display the plot in Streamlit
+    st.pyplot()
 
    
-
 st.title('Visualization final project')
 build_heatmap()
 figure2()
