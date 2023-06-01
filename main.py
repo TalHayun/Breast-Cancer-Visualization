@@ -98,15 +98,7 @@ def figure2():
   
   def graph_each_feature():
     col1, col2, col3 = st.columns(3)
-    
-    with col1:
-    feature1 = build_st_query_for_line_charts("first feature", 'Race')
-    
-    with col2:
-    feature2 = build_st_query_for_line_charts("Second feature", 'Age')
-    
-    with col3:
-    feature2 = build_st_query_for_line_charts("Second feature", 'Marital Status')
+
    
 
 st.title('Visualization final project')
