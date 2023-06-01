@@ -97,24 +97,24 @@ def figure2():
   st.plotly_chart(fig)
   
   
-def graph_each_feature():
-  selected_feature = st.selectbox("Select feature", ['Age', 'Race', 'Marital Status'])
+# def graph_each_feature():
+#   selected_feature = st.selectbox("Select feature", ['Age', 'Race', 'Marital Status'])
 
-  if selected_feature == "Age":
+#   if selected_feature == "Age":
     
-    avg_survival_by_age = df.groupby("Age")["Survival Months"].mean().reset_index()
-    print(avg_survival_by_age)
-    plt.scatter(avg_survival_by_age["Age"], avg_survival_by_age["Survival Months"])
-    plt.xlabel("Age (years)")
-    plt.ylabel("Average Survival Months")
-    plt.title("Average Survival Months by Age")
-    plt.grid(True)
+#     avg_survival_by_age = df.groupby("Age")["Survival Months"].mean().reset_index()
+#     print(avg_survival_by_age)
+#     plt.scatter(avg_survival_by_age["Age"], avg_survival_by_age["Survival Months"])
+#     plt.xlabel("Age (years)")
+#     plt.ylabel("Average Survival Months")
+#     plt.title("Average Survival Months by Age")
+#     plt.grid(True)
 
-  # Display the plot in Streamlit
-  st.pyplot()
+#   # Display the plot in Streamlit
+#   st.pyplot()
 
    
 st.title('Visualization final project')
 build_heatmap()
 figure2()
-graph_each_feature()
+# graph_each_feature()
