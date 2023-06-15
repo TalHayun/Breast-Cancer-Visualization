@@ -268,8 +268,6 @@ fig.update_layout(
     xaxis_zeroline=False,
     xaxis_title='Survival Months',
     violinmode='group',
-    width=800,
-    height=1000,
     xaxis_range=[0, 145],
     yaxis=dict(showticklabels=False)  # Remove y-axis tick labels
 )
