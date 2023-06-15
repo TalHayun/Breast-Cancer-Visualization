@@ -82,13 +82,12 @@ def build_heatmap():
 
     mortality_df = get_mortality_rate(feature1).sort_values(by='Mortality Rate')
     bar_fig = go.Figure()
-  
-    bar_fig.add_trace(go.Histogram(
-        x=mortality_df['Mortality Rate'],
-        marker=dict(color='salmon'),
-        histnorm='probability'  # Set histnorm to 'probability'
-    ))
-  
+
+    bar_fig.add_trace(go.Bar(
+          x=mortality_df.index,
+          y=mortality_df['Mortality Rate'],
+          marker=dict(color='salmon')
+      ))
     bar_fig.update_layout(
         yaxis=dict(title=dict(text= "Mortality Rate (%)", font=dict(size=20))),
         xaxis=dict(title=dict(text=f'{feature1}', font=dict(size=20))))
