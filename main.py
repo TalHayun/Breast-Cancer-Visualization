@@ -93,6 +93,12 @@ def build_heatmap():
         xaxis=dict(title=dict(text=f'{feature1}', font=dict(size=20))))
     st.plotly_chart(bar_fig)
 
+num_bins = 10  
+subset_indices = range(0, len(mortality_df.index), len(mortality_df.index) // num_bins)
+subset_x = [mortality_df.index[i] for i in subset_indices]
+
+bar_fig.update_traces(x=subset_x)
+
 
     col2 = st.columns(1)
     with col2[0]:
@@ -116,12 +122,6 @@ def build_heatmap():
 )
     # Display the heatmap in Streamlit
     st.plotly_chart(fig)
-  
-num_bins = 10  # Specify the desired number of bins
-subset_indices = range(0, len(mortality_df.index), len(mortality_df.index) // num_bins)
-subset_x = [mortality_df.index[i] for i in subset_indices]
-
-bar_fig.update_traces(x=subset_x)
 
 def build_two_y_axis_chart():
     st.subheader('Malignancy Rate and Average Tumor Size by Race')
