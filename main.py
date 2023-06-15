@@ -94,7 +94,7 @@ def build_heatmap():
     st.plotly_chart(bar_fig)
 
     num_bins = 10  
-    subset_indices = range(0, len(mortality_df.index), len(mortality_df.index) // num_bins)
+    subset_indices = range(0, len(mortality_df.index), len(mortality_df.index) / num_bins)
     subset_x = [mortality_df.index[i] for i in subset_indices]
     
     bar_fig.update_traces(x=subset_x)
