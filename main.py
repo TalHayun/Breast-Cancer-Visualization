@@ -243,10 +243,10 @@ def figure3():
             'Survival Months']
         if len(values) > 1:
             fig.add_trace(go.Violin(x=values, line_color=colors[i], name=f'{age}, {race}, {marital_status}',
-                                    meanline_visible=True))
+                                    meanline_visible=True, hovertemplate = "e"))
             i += 1
 
-    fig.update_traces(orientation='h', side='positive', width=5, points=False, hoverinfo='skip')
+    fig.update_traces(orientation='h', side='positive', width=5, points=False)
     fig.update_layout(legend=dict(traceorder='reversed', itemsizing='constant'))
     fig.update_layout(xaxis_showgrid=False, xaxis_zeroline=False, xaxis_title='Survival Months')
     fig.update_layout(violinmode='group', width=800, height=1000, xaxis_range=[0, 145])
