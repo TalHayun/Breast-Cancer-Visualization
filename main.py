@@ -35,7 +35,9 @@ def build_st_query_for_line_charts(title: str, options: list):
     feature = st.radio(f'Select {title}', options)
     return feature
 
-def build_st_query_for_ridge_charts(title: str, options: list): st.write(f"#### {title}")
+def build_st_query_for_ridge_charts(title: str, options: list):
+    st.write(f"#### {title}")
+    checkbox_states = {}
     # Add "Select All" checkbox
     if title == 'Age':
         select_all = st.checkbox("All Ages")
@@ -89,9 +91,6 @@ def build_heatmap():
     bar_fig.update_layout(
         yaxis=dict(title=dict(text= "Mortality Rate (%)", font=dict(size=20))),
         xaxis=dict(title=dict(text=f'{feature1}', font=dict(size=20))))
-
-    bar_fig.update_layout(bargap= 0.8)
-  
     st.plotly_chart(bar_fig)
 
 
@@ -244,7 +243,7 @@ def figure3():
             fig.add_trace(go.Violin(x=values, line_color=colors[i], name=f'{age}, {race}, {marital_status}',
                                     meanline_visible=True))
             i += 1
-      
+
     fig.update_layout(legend=dict(traceorder='reversed', itemsizing='constant'))
     fig.update_traces(orientation='h', side='positive', width=5, points=False)
     fig.update_layout(xaxis_showgrid=False, xaxis_zeroline=False, xaxis_title='Survival Months')
