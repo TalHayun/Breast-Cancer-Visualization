@@ -91,6 +91,9 @@ def build_heatmap():
     bar_fig.update_layout(
         yaxis=dict(title=dict(text= "Mortality Rate (%)", font=dict(size=20))),
         xaxis=dict(title=dict(text=f'{feature1}', font=dict(size=20))))
+
+    bar_fig.update_layout(width = 0.3)
+  
     st.plotly_chart(bar_fig)
 
 
