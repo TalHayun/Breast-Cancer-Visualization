@@ -82,23 +82,15 @@ def build_heatmap():
 
     mortality_df = get_mortality_rate(feature1).sort_values(by='Mortality Rate')
     bar_fig = go.Figure()
+
     bar_fig.add_trace(go.Bar(
-        x=mortality_df.index,
-        y=mortality_df['Mortality Rate'],
-        marker=dict(color='salmon')
-    ))
+          x=mortality_df.index,
+          y=mortality_df['Mortality Rate'],
+          marker=dict(color='salmon')
+      ))
     bar_fig.update_layout(
-        yaxis=dict(title=dict(text="Mortality Rate (%)", font=dict(size=20))),
-        xaxis=dict(title=dict(text=f'{feature1}', font=dict(size=20)))
-    )
-    
-    # Narrowing the bins
-    num_bins = 10  # Specify the desired number of bins
-    subset_indices = range(0, len(mortality_df.index), len(mortality_df.index) // num_bins)
-    subset_x = [mortality_df.index[i] for i in subset_indices]
-    
-    bar_fig.update_traces(x=subset_x)
-  
+        yaxis=dict(title=dict(text= "Mortality Rate (%)", font=dict(size=20))),
+        xaxis=dict(title=dict(text=f'{feature1}', font=dict(size=20))))
     st.plotly_chart(bar_fig)
 
 
