@@ -212,7 +212,7 @@ def figure3():
             "Race", ['White', 'Black', 'Other']
         )
 
-    with col1:
+    with col3:
         marital_dict = build_st_query_for_ridge_charts(
             "Marital Status", ['Married', 'Divorced', 'Single ', 'Widowed', 'Separated']
         )
@@ -222,7 +222,7 @@ def figure3():
     grouped = df.groupby(['Age', 'Race', 'Marital Status']).size().reset_index(name='count')
     filtered_groups = grouped[grouped['count'] >= 2]
     num_of_colors = len(filtered_groups)
-    colors = create_virdis(num_of_colors)
+    colors = create_virdis(num_of_colors)[::-1]
     i = 0
 
     survived = df[df['Status'] == 'Alive']
