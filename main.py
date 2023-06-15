@@ -245,6 +245,7 @@ def figure3():
             fig.add_trace(go.Violin(x=values, line_color=colors[i], name=f'{age}, {race}, {marital_status}',
                                     meanline_visible=True, hovertemplate = 'x %{x}'))
             i += 1
+            break
 
     fig.update_traces(orientation='h', side='positive', width=5, points=False)
     fig.update_layout(legend=dict(traceorder='reversed', itemsizing='constant'))
