@@ -254,9 +254,7 @@ def figure3():
     # fig.update_layout(yaxis=dict(showticklabels=False))  # Remove y-axis tick labels
     # st.plotly_chart(fig)
 
-fig.update_traces(
-    hovertemplate='Min: %{y.min}<br>Max: %{y.max}'
-)
+fig.update_traces(hovertemplate='Min: %{y.min}<br>Max: %{y.max}')
 
 # Set other layout configurations
 fig.update_layout(
