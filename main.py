@@ -35,8 +35,7 @@ def build_st_query_for_line_charts(title: str, options: list):
     feature = st.radio(f'Select {title}', options)
     return feature
 
-def build_st_query_for_ridge_charts(title: str, options: list):
-    st.write(f"#### {title}")
+def build_st_query_for_ridge_charts(title: str, options: list): st.write(f"#### {title}")
     checkbox_states = {}
     # Add "Select All" checkbox
     if title == 'Age':
@@ -248,7 +247,7 @@ def figure3():
             i += 1
       
     fig.update_layout(legend=dict(traceorder='reversed', itemsizing='constant'))
-    fig.update_traces(hovertemplate=hovertemplate=None)
+    fig.update_traces(hovertemplate=None)
     fig.update_traces(orientation='h', side='positive', width=5, points=False)
     fig.update_layout(xaxis_showgrid=False, xaxis_zeroline=False, xaxis_title='Survival Months')
     fig.update_layout(violinmode='group', width=800, height=1000, xaxis_range=[0, 145])
