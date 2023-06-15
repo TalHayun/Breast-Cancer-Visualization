@@ -243,7 +243,7 @@ def figure3():
             'Survival Months']
         if len(values) > 1:
             fig.add_trace(go.Violin(x=values, line_color=colors[i], name=f'{age}, {race}, {marital_status}',
-                                    meanline_visible=True, hovertemplate = 'min%{22}'))
+                                    meanline_visible=True))
             i += 1
 
     fig.update_traces(side='positive', width=5, points=False)
