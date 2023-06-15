@@ -86,7 +86,8 @@ def build_heatmap():
     bar_fig.add_trace(go.Bar(
         x=mortality_df.index,
         y=mortality_df['Mortality Rate'],
-        marker=dict(color='salmon')
+        marker=dict(color='salmon'),
+        nbinsx=10 
       ))
     bar_fig.update_layout(
         yaxis=dict(title=dict(text= "Mortality Rate (%)", font=dict(size=20))),
