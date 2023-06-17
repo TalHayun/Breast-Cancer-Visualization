@@ -7,6 +7,7 @@ import plotly.graph_objects as go
 from PIL import Image
 from matplotlib import cm
 import numpy as np
+from lifelines import KaplanMeierFitter
 
 image = Image.open('dataset-cover.jpg')
 df = pd.read_csv('Breast_Cancer.csv')
@@ -58,6 +59,10 @@ def build_st_query_for_ridge_charts(title: str, options: list):
 
     return checkbox_states
 
+def get_checkbox_list(checkbox_dict):
+    return [key for key, val in checkbox_dict.items() if val]
+
+
 def create_virdis(num):
     viridis = cm.get_cmap('viridis', 12)
     virdis_list = viridis(np.linspace(0, 1, num))
@@ -91,11 +96,9 @@ def build_heatmap():
     bar_fig.update_layout(
         yaxis=dict(title=dict(text= "Mortality Rate (%)", font=dict(size=20))),
         xaxis=dict(title=dict(text=f'{feature1}', font=dict(size=20))))
-
-    bar_fig.update_layout(bargap = 0.8)
     st.plotly_chart(bar_fig)
 
-  
+
     col2 = st.columns(1)
     with col2[0]:
         options_feature2 = ['Age', 'Race', 'Marital Status']
@@ -153,50 +156,121 @@ def build_two_y_axis_chart():
     )
     st.plotly_chart(fig)
 
-# def figure3():
-#     st.subheader('Women with which characteristics are more likely to have a short recovery from breast cancer?')
-#
-#     survived = df[df['Status'] == 'Alive']
-#     survived_avg = survived.groupby(['Marital Status', 'Race', 'Age'])['Survival Months'].mean().reset_index()
-#     color_scale = px.colors.qualitative.T10
-#
-#     fig = px.bar(survived_avg, x="Marital Status", y="Survival Months", color="Race",
-#                  animation_frame="Age", animation_group="Marital Status", facet_col="Race", range_y=[0, 100], color_discrete_sequence=color_scale)
-#     fig.update_layout(yaxis=dict(title=dict(text="Recovery Time (Months)")),height=600, width=900)
-#     fig.update_layout(
-#         updatemenus=[
-#             dict(
-#                 type="buttons",
-#                 buttons=[
-#                     dict(
-#                         label="Play",
-#                         method="animate",
-#                         args=[
-#                             None,
-#                             {
-#                                 "frame": {"duration": 1000},  # Frame duration for "Play" button
-#                                 "fromcurrent": True,
-#                                 "transition": {"duration": 500, "easing": "linear"},
-#                             },
-#                         ],
-#                     ),
-#                     dict(
-#                         label="Stop",
-#                         method="animate",
-#                         args=[
-#                             [None],
-#                             {
-#                                 "frame": {"duration": 0},  # Frame duration for "Stop" button
-#                                 "mode": "immediate",
-#                                 "transition": {"duration": 0},
-#                             },
-#                         ],
-#                     ),
-#                 ],
-#             ),
-#         ],
-#     )
-#     st.plotly_chart(fig)
+def create_ridge(age_dict, race_dict, marital_dict):
+    # Create the main figure
+    fig = go.Figure()
+
+    # Add your existing code for the main graph here...
+    fig = go.Figure()
+    survived = df[df['Status'] == 'Alive']
+
+    age_list = [key for key, val in age_dict.items() if val]
+    race_list = [key for key, val in race_dict.items() if val]
+    marital_list = [key for key, val in marital_dict.items() if val]
+
+    grouped = survived
+    group_by_list = []
+    if age_list:
+        grouped = grouped[grouped['Age'].isin(age_list)]
+        group_by_list.append('Age')
+    if race_list:
+        grouped = grouped[grouped['Race'].isin(race_list)]
+        group_by_list.append('Race')
+    if marital_list:
+        grouped = grouped[grouped['Marital Status'].isin(marital_list)]
+        group_by_list.append('Marital Status')
+
+    if age_list or race_list or marital_list:
+        grouped = grouped.groupby(group_by_list).agg(
+            {'Survival Months': ['mean', 'count']}).reset_index()
+        grouped = grouped[grouped['Survival Months']['count'] >= 2]
+        grouped = grouped.sort_values(by=[('Survival Months', 'mean')], ascending=False)
+
+        num_of_colors = len(grouped)
+        colors = create_virdis(num_of_colors)
+        i = 0
+
+        # Iterate through each group
+        for _, row in grouped.iterrows():
+            name = ""
+            survived_copy = survived.copy()
+            if age_list:
+                age = row['Age'][0]
+                survived_copy = survived_copy[(survived_copy['Age'] == age)]
+                name += f'{age},'
+            if race_list:
+                race = row['Race'][0]
+                survived_copy = survived_copy[(survived_copy['Race'] == race)]
+                name += f'{race},'
+            if marital_list:
+                marital_status = row['Marital Status'][0]
+                survived_copy = survived_copy[(survived_copy['Marital Status'] == marital_status)]
+                name += f'{marital_status},'
+            values = survived_copy['Survival Months']
+            name = name[:len(name) - 1]
+            fig.add_trace(go.Violin(x=values, line_color=colors[i], name=name,
+                                    meanline_visible=True))
+            i += 1
+
+    fig.update_layout(legend=dict(traceorder='reversed', itemsizing='constant'))
+    fig.update_traces(orientation='h', side='positive', width=5, points=False)
+    fig.update_layout(xaxis_showgrid=False, xaxis_zeroline=False, xaxis_title='Time to Recover (Months)')
+    fig.update_layout(violinmode='group', width=800, height=800, xaxis_range=[0, 145])
+    fig.update_layout(yaxis=dict(showticklabels=False))  # Remove y-axis tick labels
+    return fig
+
+
+def create_km_graph(name, name_dict):
+    fig = go.Figure()
+
+    survived = df.copy()
+    survived['Status'] = survived['Status'].map({'Alive': 1, 'Dead': 0})
+
+    name_list = [key for key, val in name_dict.items() if val]
+    if name_list:
+        survived = survived[survived[name].isin(name_list)]
+
+        n_colors = len(survived[name].unique())
+
+        # Define a color palette with different colors
+        color_palette = create_virdis(n_colors)
+
+        for i, value in enumerate(survived[name].unique()):
+            kmf = KaplanMeierFitter()
+
+            # Filter data for the current value
+            group_survived = survived[survived[name] == value]
+
+            survival_time = group_survived['Survival Months']
+            status = group_survived['Status']
+
+            kmf.fit(survival_time, status)
+            survival_probs = kmf.survival_function_
+
+            # Flip the survival probabilities
+            survival_probs['KM_estimate'] = 1 - survival_probs['KM_estimate']
+
+            fig.add_trace(go.Scatter(
+                x=kmf.survival_function_.index, y=kmf.survival_function_['KM_estimate'],
+                mode='lines',  # Update the mode to 'lines'
+                line=dict(shape='hv', width=3, color=color_palette[i]),
+                name=value
+            ))
+
+    fig.update_layout(
+        title=f'Kaplan-Meier Recovery Curve By {name}',
+        xaxis_title='Time (Months)',
+        yaxis_title='Recovery Probability ',
+        showlegend=True,
+        legend=dict(
+            orientation="v",
+            traceorder="reversed"
+        )
+    )
+    fig.update_layout(width=700, height=400, xaxis_range=[0, 60], yaxis_range=[0, 0.25])
+
+    return fig
+
 
 def figure3():
     st.subheader('Women with which characteristics are more likely to have a short recovery from breast cancer?')
@@ -219,39 +293,18 @@ def figure3():
             "Marital Status", ['Married', 'Divorced', 'Single ', 'Widowed', 'Separated']
         )
 
-    fig = go.Figure()
+    ridge = create_ridge(age_dict, race_dict, marital_dict)
+    st.plotly_chart(ridge)
 
-    grouped = df.groupby(['Age', 'Race', 'Marital Status']).size().reset_index(name='count')
-    filtered_groups = grouped[grouped['count'] >= 2]
-    num_of_colors = len(filtered_groups)
-    colors = create_virdis(num_of_colors)
-    i = 0
+    age_graph = create_km_graph('Age', age_dict)
+    st.plotly_chart(age_graph)
 
-    survived = df[df['Status'] == 'Alive']
-    grouped = survived.groupby(['Age', 'Race', 'Marital Status'])['Survival Months'].mean().reset_index()
+    race_graph = create_km_graph('Race', race_dict)
+    st.plotly_chart(race_graph)
 
-    # Sort the groups by the mean survival months in descending order
-    sorted_groups = grouped.sort_values('Survival Months', ascending=False)
+    marital_graph = create_km_graph('Marital Status', marital_dict)
+    st.plotly_chart(marital_graph)
 
-    # Iterate through each group
-    for _, row in sorted_groups.iterrows():
-        age = row['Age']
-        race = row['Race']
-        marital_status = row['Marital Status']
-        values = survived[
-            (survived['Age'] == age) & (survived['Race'] == race) & (survived['Marital Status'] == marital_status)][
-            'Survival Months']
-        if len(values) > 1:
-            fig.add_trace(go.Violin(x=values, line_color=colors[i], name=f'{age}, {race}, {marital_status}',
-                                    meanline_visible=True))
-            i += 1
-
-    fig.update_traces(side='positive', width=5, points=False)
-    fig.update_traces(orientation='h', side='positive', width=5, points=False)
-    fig.update_layout(xaxis_showgrid=False, xaxis_zeroline=False, xaxis_title='Survival Months')
-    fig.update_layout(violinmode='group', width=800, height=1000, xaxis_range=[0, 145])
-    fig.update_layout(yaxis=dict(showticklabels=False))  # Remove y-axis tick labels
-    st.plotly_chart(fig)
 
 st.markdown("""
     <h1 style='text-align: center;'>Visualization Final Project</h1>
