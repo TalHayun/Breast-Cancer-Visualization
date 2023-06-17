@@ -3,6 +3,6 @@ streamlit
 altair
 seaborn
 plotly.express
-plotly.subplots == 23.1.2
+plotly.subplots - upgrade
 Pillow
 lifelines
