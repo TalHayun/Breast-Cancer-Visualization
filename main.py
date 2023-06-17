@@ -317,28 +317,7 @@ def figure3():
       st.markdown("<br>", unsafe_allow_html=True)  
 
     with col2:
-        # Add CSS styling to center the ridge graph
-        st.markdown(
-            """
-            <style>
-            .center-div {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100%;
-            }
-            </style>
-            """,
-            unsafe_allow_html=True,
-        )
-    
-        # Apply the CSS class to the div containing the ridge graph
-        st.markdown(
-            f'<div class="center-div">{st.plotly_chart(ridge)}</div>',
-            unsafe_allow_html=True,
-        )
-
-
+      st.plotly_chart(ridge)
 
 st.markdown("""
     <h1 style='text-align: center;'>Visualization Final Project</h1>
