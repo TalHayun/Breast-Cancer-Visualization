@@ -262,14 +262,22 @@ def create_km_graph(name, name_dict):
 
     fig.update_layout(
         title=f'Kaplan-Meier Recovery Curve',
-        subtitle = f'By {name}',
         xaxis_title='Time (Months)',
         yaxis_title='Recovery Probability ',
         showlegend=True,
+        annotations=[
+        dict(
+            text='Subtitle Text',
+            x=0.5,
+            y=1.05,
+            showarrow=False,
+            font=dict(size=12)
+        ),
         legend=dict(
             orientation="v",
             traceorder="reversed"
         )
+      
     )
     fig.update_layout(width=700, height=400, xaxis_range=[0, 60], yaxis_range=[0, 0.25])
 
