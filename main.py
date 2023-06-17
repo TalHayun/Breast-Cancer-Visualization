@@ -317,7 +317,7 @@ def figure3():
       st.markdown("<br>", unsafe_allow_html=True)  
 
     with col2:
-      st.plotly_chart(ridge)
+      st.plotly_chart(ridge, height=10, width=200)
   
 st.markdown("""
     <h1 style='text-align: center;'>Visualization Final Project</h1>
