@@ -315,11 +315,11 @@ def figure3():
     #   st.plotly_chart(marital_graph, height=200, width=300)
     # with col1:
     #   st.plotly_chart(ridge, height=400, width=200) 
-    # fig = sp.make_subplots(rows=1, cols=1)
-    # fig.add_trace(age_graph.data[0], row=1, col=1)
-    # fig.update_layout(height=800, width=600)
-    # st.plotly_chart(fig)
-    st.write(age_graph)
+    fig = sp.make_subplots(rows=1, cols=1)
+    fig.add_trace(age_graph, row=1, col=1)
+    fig.update_layout(height=800, width=600)
+    st.plotly_chart(fig)
+    # st.write(age_graph)
 
 
 st.markdown("""
