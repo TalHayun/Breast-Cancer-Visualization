@@ -306,7 +306,7 @@ def figure3():
     marital_graph = create_km_graph('Marital Status', marital_dict)
     # st.plotly_chart(marital_graph)
 
-    col1, col2 = st.beta_columns([2, 1])
+    col1, col2 = st.columns([2])
     with col1:
         st.plotly_chart(race_graph, height=1, width=1) 
 
