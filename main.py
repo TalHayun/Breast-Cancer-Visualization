@@ -306,24 +306,24 @@ def figure3():
     marital_graph = create_km_graph('Marital Status', marital_dict)
     # st.plotly_chart(marital_graph)
 
+    print(type(age_graph))
+    # fig = sp.make_subplots(rows=1, cols=3)
+    # fig.add_trace(age_graph)
+    # fig.add_trace(race_graph)
+    # fig.add_trace(marital_graph)
+    # st.plotly_chart(fig)
 
-    fig = sp.make_subplots(rows=1, cols=3)
-    fig.add_trace(age_graph)
-    fig.add_trace(race_graph)
-    fig.add_trace(marital_graph)
-    st.plotly_chart(fig)
+    # col1, col2, col3 = st.columns(3)  
+    # with col1:
+    #     st.plotly_chart(age_graph, height=1, width=1)
 
-    col1, col2, col3 = st.columns(3)  
-    with col1:
-        st.plotly_chart(age_graph, height=1, width=1)
-
-    with col2:
-      st.plotly_chart(race_graph, height=1, width=1) 
+    # with col2:
+    #   st.plotly_chart(race_graph, height=1, width=1) 
       
-    with col3:
-      st.plotly_chart(marital_graph, height=1, width=1) 
+    # with col3:
+    #   st.plotly_chart(marital_graph, height=1, width=1) 
 
-    st.plotly_chart(ridge, height=5, width=10) 
+    # st.plotly_chart(ridge, height=5, width=10) 
 
 
 st.markdown("""
