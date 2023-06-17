@@ -315,14 +315,11 @@ def figure3():
     # with col1:
     #   st.plotly_chart(ridge, height=400, width=200) 
 
-    # fig = make_subplots(rows=1)
-    # fig.add_trace(marital_graph)
-    # fig.update_layout(height=600, width=800, title_text='Combined Graphs')
-    # st.plotly_chart(fig)
-    combined_figure = go.Figure()
-    combined_figure.add_traces(age_graph.data)
-    combined_figure.add_traces(race_graph.data)
-    combined_figure.add_traces(marital_graph.data)
+    fig = make_subplots(rows=1, cols=3)
+    fig.add_traces(age_graph.data, row=1, col=1)
+    fig.add_traces(race_graph.data, row=1, col=2)
+    fig.add_traces(marital_graph.data, row=1, col=3)
+    fig.update_layout(height=600, width=800, title_text='Combined Graphs')
     st.plotly_chart(combined_figure)
 
       
