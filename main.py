@@ -1,4 +1,4 @@
-pip install streamlit --upgrade
+!pip install streamlit --upgrade
 
 import pandas as pd
 import streamlit as st
