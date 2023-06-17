@@ -310,12 +310,13 @@ def figure3():
     col1, col2 = st.columns([3, 1])
 
     with col1:
-      st.plotly_chart(ridge)
-      
-    with col2:
       st.plotly_chart(age_graph)
       st.plotly_chart(race_graph)
-      st.plotly_chart(marital_graph)      
+      st.plotly_chart(marital_graph)  
+      
+    with col2:
+      st.plotly_chart(ridge)
+   
   
 st.markdown("""
     <h1 style='text-align: center;'>Visualization Final Project</h1>
