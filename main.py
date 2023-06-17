@@ -7,6 +7,7 @@ import plotly.graph_objects as go
 from PIL import Image
 from matplotlib import cm
 import numpy as np
+import plotly.subplots
 from lifelines import KaplanMeierFitter
 
 image = Image.open('dataset-cover.jpg')
