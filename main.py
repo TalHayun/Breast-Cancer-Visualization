@@ -312,6 +312,16 @@ def figure3():
 
     col1, col2 = st.columns(2)
 
+    col1.markdown(
+      """
+      <style>
+      .stColumn {
+          height: auto !important;
+      }
+      </style>
+      """,
+      unsafe_allow_html=True,
+  )
     with col1:
       st.plotly_chart(age_graph, height=10, width=20)
       st.markdown("<br>", unsafe_allow_html=True)  
