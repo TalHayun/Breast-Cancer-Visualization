@@ -1,4 +1,5 @@
 import pandas as pd
+import plotly
 import streamlit as st
 import altair as alt
 import seaborn as sns
