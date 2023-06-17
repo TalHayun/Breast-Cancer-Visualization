@@ -306,14 +306,18 @@ def figure3():
     marital_graph = create_km_graph('Marital Status', marital_dict)
     # st.plotly_chart(marital_graph)
 
-    col1, col2 = st.columns([1, 2])
+    # col1, col2 = st.columns([1, 2])
   
-    with col2:
-      st.plotly_chart(age_graph, height=200, width=300)
-      st.plotly_chart(race_graph, height=200, width=300)
-      st.plotly_chart(marital_graph, height=200, width=300)
-    with col1:
-      st.plotly_chart(ridge, height=400, width=200) 
+    # with col2:
+    #   st.plotly_chart(age_graph, height=200, width=300)
+    #   st.plotly_chart(race_graph, height=200, width=300)
+    #   st.plotly_chart(marital_graph, height=200, width=300)
+    # with col1:
+    #   st.plotly_chart(ridge, height=400, width=200) 
+    fig = make_subplots(rows=1)
+    fig.add_trace(marital_graph)
+    fig.update_layout(height=600, width=800, title_text='Combined Graphs')
+    st.plotly_chart(fig)
 
       
 
