@@ -295,7 +295,7 @@ def figure3():
         )
 
     ridge = create_ridge(age_dict, race_dict, marital_dict)
-    # st.plotly_chart(ridge)
+    st.plotly_chart(ridge)
 
     age_graph = create_km_graph('Age', age_dict)
     # st.plotly_chart(age_graph)
@@ -306,18 +306,12 @@ def figure3():
     marital_graph = create_km_graph('Marital Status', marital_dict)
     # st.plotly_chart(marital_graph)
 
-    dynamic_plot = st.plotly_chart(ridge)
-    static_fig1 = age_graph
-    static_fig2 = race_graph
-    static_fig3 = marital_graph
-    static_plots = [static_fig1, static_fig2, static_fig3]
+    # dynamic_plot = st.plotly_chart(ridge)
+    # static_fig1 = age_graph
+    # static_fig2 = race_graph
+    # static_fig3 = marital_graph
+    # static_plots = [static_fig1, static_fig2, static_fig3]
   
-    st.plotly_chart(dynamic_plot)
-      
-    # with col2:
-    #   for static_plot in static_plots:
-    #       st.plotly_chart(static_plot)
-
 st.markdown("""
     <h1 style='text-align: center;'>Visualization Final Project</h1>
     """, unsafe_allow_html=True)
