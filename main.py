@@ -315,7 +315,7 @@ def figure3():
     # with col1:
     #   st.plotly_chart(ridge, height=400, width=200) 
 
-    fig = make_subplots(rows=1, cols=3)
+    fig = plotly.subplots.make_subplots(rows=1, cols=3)
     fig.add_traces(age_graph.data, row=1, col=1)
     fig.add_traces(race_graph.data, row=1, col=2)
     fig.add_traces(marital_graph.data, row=1, col=3)
