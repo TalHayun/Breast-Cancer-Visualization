@@ -320,7 +320,7 @@ def figure3():
     fig.add_traces(race_graph.data[0], row=1, col=2)
     fig.add_traces(marital_graph.data[0], row=1, col=3)
     fig.update_layout(height=600, width=800, title_text='Combined Graphs')
-    st.plotly_chart(combined_figure)
+    st.plotly_chart(fig)
 
       
 st.markdown("""
