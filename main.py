@@ -316,7 +316,7 @@ def figure3():
     # with col1:
     #   st.plotly_chart(ridge, height=400, width=200) 
   
-    col1, col2 = st.beta_columns([3, 1])
+    col1, col2 = col1, col2 = st.columns([3, 1])
     with col1:
       st.plotly_chart(age_graph)
       st.plotly_chart(race_graph)
