@@ -309,7 +309,7 @@ def figure3():
     col1, col2 = st.columns([3, 1])
 
     with col1:
-      st.plotly_chart(age_graph)
+      st.plotly_chart(age_graph, height=100, width=200)
       st.markdown("<br>", unsafe_allow_html=True)  # Add vertical spacing
       st.plotly_chart(race_graph)
       st.markdown("<br>", unsafe_allow_html=True)  # Add vertical spacing
