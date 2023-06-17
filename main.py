@@ -4,6 +4,7 @@ import altair as alt
 import seaborn as sns
 import plotly.express as px
 import plotly.graph_objects as go
+import matplotlib.pyplot as plt
 from PIL import Image
 from matplotlib import cm
 import numpy as np
