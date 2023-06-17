@@ -4,6 +4,7 @@ import altair as alt
 import seaborn as sns
 import plotly.express as px
 import plotly.graph_objects as go
+import plotly.tools as tls
 import matplotlib.pyplot as plt
 from PIL import Image
 from matplotlib import cm
@@ -323,9 +324,7 @@ def figure3():
     # fig.add_traces(marital_graph.data, row=1, col=3)
     # fig.update_layout(height=600, width=800, title_text='Combined Graphs')
     st.pyplot(fig)
-
-
-      
+    
 st.markdown("""
     <h1 style='text-align: center;'>Visualization Final Project</h1>
     """, unsafe_allow_html=True)
