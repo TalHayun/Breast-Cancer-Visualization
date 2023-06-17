@@ -2,7 +2,6 @@ pandas
 streamlit
 altair
 seaborn
-plotly.subplots
 plotly.express
 Pillow
 lifelines
