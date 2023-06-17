@@ -310,30 +310,15 @@ def figure3():
     empty_figure.update_xaxes(showgrid=False, zeroline=False, visible=False)
     empty_figure.update_yaxes(showgrid=False, zeroline=False, visible=False)
 
-    col1, col2 = st.columns(2)
+    col1, col2 = st.columns([3, 1])
 
-    col1.markdown(
-      """
-      <style>
-      .stColumn {
-          height: auto !important;
-      }
-      </style>
-      """,
-      unsafe_allow_html=True,
-  )
     with col1:
       st.plotly_chart(age_graph, height=5, width=10)
-      st.markdown("<br>", unsafe_allow_html=True)  
       st.plotly_chart(race_graph, height=5, width=10)
-      st.markdown("<br>", unsafe_allow_html=True)  
       st.plotly_chart(marital_graph, height=5, width=10)  
-      st.markdown("<br>", unsafe_allow_html=True)  
 
     with col2:
-      st.plotly_chart(empty_figure, height=10, width=20)
-      st.plotly_chart(ridge, height=20, width=40)
-      st.plotly_chart(empty_figure, height=10, width=20)
+      st.plotly_chart(ridge)
 
 st.markdown("""
     <h1 style='text-align: center;'>Visualization Final Project</h1>
