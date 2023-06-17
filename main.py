@@ -351,7 +351,6 @@ def figure3():
         yanchor='top',  # Anchor point of the legend on the Y-axis
         orientation='h'  # Orientation of the legend (h for horizontal, v for vertical)
     )
-)
 
 st.plotly_chart(fig)
 
