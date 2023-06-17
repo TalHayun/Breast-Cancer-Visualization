@@ -322,7 +322,7 @@ def figure3():
     # Violin positive
     fig.update_traces(orientation='h', side='positive', width=5, points=False, row=1, col=2)
 
-st.plotly_chart(fig)
+    st.plotly_chart(fig)
 
 
 
