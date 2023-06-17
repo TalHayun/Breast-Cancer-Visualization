@@ -310,7 +310,7 @@ def figure3():
     empty_figure.update_xaxes(showgrid=False, zeroline=False, visible=False)
     empty_figure.update_yaxes(showgrid=False, zeroline=False, visible=False)
 
-    col1, col2, col2 = st.beta_columns(3)
+    col1, col2, col2 = st.columns(3)
 
     with col1:
         st.plotly_chart(age_graph, height=5, width=5)
