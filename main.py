@@ -306,8 +306,8 @@ def figure3():
     marital_graph = create_km_graph('Marital Status', marital_dict)
     # st.plotly_chart(marital_graph)
 
-    dynamic_plot = st.plotly_chart(ridge)
-    dynamic_plot  
+    st.plotly_chart(ridge)
+    # dynamic_plot  
     # static_fig1 = age_graph
     # static_fig2 = race_graph
     # static_fig3 = marital_graph
