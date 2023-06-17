@@ -319,12 +319,11 @@ def figure3():
 
     fig, axes = plt.subplots(nrows=1, ncols=1)
     age_graph_mpl = tls.mpl_to_plotly(age_graph)
-    ax.plot(age_graph_mpl)
     # fig.add_traces(race_graph.data, row=1, col=2)
     # fig.add_traces(marital_graph.data, row=1, col=3)
     # fig.update_layout(height=600, width=800, title_text='Combined Graphs')
-    st.pyplot(fig)
-    
+    st.plotly_chart(age_graph_mpl)
+
 st.markdown("""
     <h1 style='text-align: center;'>Visualization Final Project</h1>
     """, unsafe_allow_html=True)
