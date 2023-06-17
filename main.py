@@ -261,7 +261,7 @@ def create_km_graph(name, name_dict):
             ))
 
     fig.update_layout(
-        title=f'Kaplan-Meier Recovery Curve "\n" By {name}',
+        title=f'Kaplan-Meier Recovery Curve \nBy {name}',
         xaxis_title='Time (Months)',
         yaxis_title='Recovery Probability ',
         showlegend=True,
@@ -314,7 +314,6 @@ def figure3():
       st.plotly_chart(race_graph, use_container_width=True)
       st.plotly_chart(marital_graph, use_container_width=True)
     
-    # Display the ridge graph in the right column
     with col2:
       st.plotly_chart(ridge, use_container_width=True)
 
