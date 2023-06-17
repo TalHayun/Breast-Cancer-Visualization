@@ -317,9 +317,9 @@ def figure3():
     with col1:
       st.plotly_chart(dynamic_plot)
       
-    with col2:
-      for static_plot in static_plots:
-          st.plotly_chart(static_plot)
+    # with col2:
+    #   for static_plot in static_plots:
+    #       st.plotly_chart(static_plot)
 
 st.markdown("""
     <h1 style='text-align: center;'>Visualization Final Project</h1>
