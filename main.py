@@ -8,6 +8,7 @@ from PIL import Image
 from matplotlib import cm
 import numpy as np
 from lifelines import KaplanMeierFitter
+from plotly.subplots import make_subplots
 
 image = Image.open('dataset-cover.jpg')
 df = pd.read_csv('Breast_Cancer.csv')
