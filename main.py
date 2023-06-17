@@ -9,6 +9,7 @@ from matplotlib import cm
 import numpy as np
 from lifelines import KaplanMeierFitter
 
+
 image = Image.open('dataset-cover.jpg')
 df = pd.read_csv('Breast_Cancer.csv')
 
