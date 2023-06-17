@@ -322,7 +322,8 @@ def figure3():
         st.plotly_chart(marital_graph, height=5, width=10)  
 
     with col2:
-      st.plotly_chart(empty_figure) 
+      st.plotly_chart(empty_figure, height=5, width=10) 
+      
     with col3:
       st.plotly_chart(ridge, height=5, width=10) 
 
