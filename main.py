@@ -314,12 +314,12 @@ def figure3():
     #   st.plotly_chart(marital_graph, height=200, width=300)
     # with col1:
     #   st.plotly_chart(ridge, height=400, width=200) 
-    fig = make_subplots(rows=1)
-    fig.add_trace(st.plotly_chart(marital_graph))
-    fig.update_layout(height=600, width=800, title_text='Combined Graphs')
-    st.plotly_chart(fig)
 
-      
+    print(marital_graph)
+    # fig = make_subplots(rows=1)
+    # fig.add_trace(marital_graph)
+    # fig.update_layout(height=600, width=800, title_text='Combined Graphs')
+    # st.plotly_chart(fig)
 
 st.markdown("""
     <h1 style='text-align: center;'>Visualization Final Project</h1>
