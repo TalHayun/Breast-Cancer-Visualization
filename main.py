@@ -306,13 +306,16 @@ def figure3():
     marital_graph = create_km_graph('Marital Status', marital_dict)
     # st.plotly_chart(marital_graph)
 
-    for _ in range(1):
+
+    col1, col2 = st.columns([3, 1])
+
+    with col1:
       st.plotly_chart(ridge)
-    # dynamic_plot  
-    # static_fig1 = age_graph
-    # static_fig2 = race_graph
-    # static_fig3 = marital_graph
-    # static_plots = [static_fig1, static_fig2, static_fig3]
+      
+    with col2:
+      st.plotly_chart(age_graph)
+      st.plotly_chart(race_graph)
+      st.plotly_chart(marital_graph)      
   
 st.markdown("""
     <h1 style='text-align: center;'>Visualization Final Project</h1>
