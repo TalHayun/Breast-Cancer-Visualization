@@ -319,7 +319,7 @@ def figure3():
     # fig.add_trace(age_graph.data[0], row=1, col=1)
     # fig.update_layout(height=800, width=600)
     # st.plotly_chart(fig)
-    st.write(age_graph.data)
+    st.write(age_graph)
 
 
 st.markdown("""
