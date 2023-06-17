@@ -331,26 +331,7 @@ def figure3():
                       yaxis2_title='',
                       yaxis3_title='Recovery Probability',
                       yaxis4_title='Recovery Probability',
-                      legend_tracegroupgap=50
-                      )
-    fig.update_layout(
-    height=900, width=900,
-    xaxis1_title='Time (Months)',
-    xaxis2_title='Time to Recover (Months)',
-    xaxis3_title='Time (Months)',
-    xaxis4_title='Time (Months)',
-    yaxis1_title='Recovery Probability',
-    yaxis2_title='',
-    yaxis3_title='Recovery Probability',
-    yaxis4_title='Recovery Probability',
-    legend_tracegroupgap=50,
-    legend=dict(
-        x=0.5,  # X-axis position of the legend (0.0 to 1.0)
-        y=1.2,  # Y-axis position of the legend (0.0 to 1.0)
-        xanchor='center',  # Anchor point of the legend on the X-axis
-        yanchor='top',  # Anchor point of the legend on the Y-axis
-        orientation='h'  # Orientation of the legend (h for horizontal, v for vertical)
-    )
+                      legend_tracegroupgap=50)
 
 st.plotly_chart(fig)
 
