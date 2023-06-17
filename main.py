@@ -316,9 +316,7 @@ def figure3():
     
     # Display the ridge graph in the right column
     with col2:
-      st.plotly_chart(ridge_graph, use_container_width=True)
-  
-
+      st.plotly_chart(ridge, use_container_width=True)
 
 st.markdown("""
     <h1 style='text-align: center;'>Visualization Final Project</h1>
