@@ -1,5 +1,4 @@
 pandas
-pip == 23.1.2
 streamlit
 altair
 seaborn
