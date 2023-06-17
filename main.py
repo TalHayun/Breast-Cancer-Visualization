@@ -3,7 +3,6 @@ import streamlit as st
 import altair as alt
 import seaborn as sns
 import plotly.express as px
-from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 from PIL import Image
 from matplotlib import cm
