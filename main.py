@@ -1,15 +1,14 @@
 import pandas as pd
-import plotly
 import streamlit as st
 import altair as alt
 import seaborn as sns
 import plotly.express as px
 import plotly.graph_objects as go
-import plotly.subplots
 from PIL import Image
 from matplotlib import cm
 import numpy as np
 from lifelines import KaplanMeierFitter
+
 
 image = Image.open('dataset-cover.jpg')
 df = pd.read_csv('Breast_Cancer.csv')
