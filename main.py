@@ -311,11 +311,8 @@ def figure3():
     static_fig2 = race_graph
     static_fig3 = marital_graph
     static_plots = [static_fig1, static_fig2, static_fig3]
-
-    col1 = st.columns([1])
   
-    with col1:
-      st.plotly_chart(dynamic_plot)
+    st.plotly_chart(dynamic_plot)
       
     # with col2:
     #   for static_plot in static_plots:
