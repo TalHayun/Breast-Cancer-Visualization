@@ -316,8 +316,8 @@ def figure3():
       st.plotly_chart(race_graph, use_container_width=True)
     
     with col2:
-      st.plotly_chart(ridge, use_container_width=True)
       st.plotly_chart(marital_graph, use_container_width=True)
+      st.plotly_chart(ridge, use_container_width=True)
 
 st.markdown("""
     <h1 style='text-align: center;'>Visualization Final Project</h1>
