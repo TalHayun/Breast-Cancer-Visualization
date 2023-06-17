@@ -310,12 +310,16 @@ def figure3():
     empty_figure.update_xaxes(showgrid=False, zeroline=False, visible=False)
     empty_figure.update_yaxes(showgrid=False, zeroline=False, visible=False)
 
-    col1, col2 = st.columns([3, 1])
+    col1, col2 = st.columns(2)
 
     with col1:
-      st.plotly_chart(age_graph, height=5, width=10)
-      st.plotly_chart(race_graph, height=5, width=10)
-      st.plotly_chart(marital_graph, height=5, width=10)  
+      col1_graphs = st.columns(3)
+      with col1_graphs[0]:
+        st.plotly_chart(age_graph, height=5, width=10)
+      with col1_graphs[1]:
+        st.plotly_chart(race_graph, height=5, width=10)
+      with col1_graphs[2]:
+        st.plotly_chart(marital_graph, height=5, width=10)  
 
     with col2:
       st.plotly_chart(ridge)
