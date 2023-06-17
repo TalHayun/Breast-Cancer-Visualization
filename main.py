@@ -265,11 +265,6 @@ def create_km_graph(name, name_dict):
         xaxis_title='Time (Months)',
         yaxis_title='Recovery Probability ',
         showlegend=True,
-        annotations=[dict(text='Subtitle Text',
-            x=0.5,
-            y=1.05,
-            showarrow=False,
-            font=dict(size=12))],
         legend=dict(
             orientation="v",
             traceorder="reversed"
