@@ -314,11 +314,11 @@ def figure3():
 
     with col1:
       st.plotly_chart(age_graph, height=10, width=20)
-      # st.markdown("<br>", unsafe_allow_html=True)  
+      st.markdown("<br>", unsafe_allow_html=True)  
       st.plotly_chart(race_graph, height=10, width=20)
-      # st.markdown("<br>", unsafe_allow_html=True)  
+      st.markdown("<br>", unsafe_allow_html=True)  
       st.plotly_chart(marital_graph, height=10, width=20)  
-      # st.markdown("<br>", unsafe_allow_html=True)  
+      st.markdown("<br>", unsafe_allow_html=True)  
 
     with col2:
       st.plotly_chart(empty_figure, height=10, width=20)
