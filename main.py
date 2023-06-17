@@ -322,7 +322,7 @@ def figure3():
         st.plotly_chart(marital_graph, height=5, width=10)  
 
     with col2:
-      st.plotly_chart(ridge)
+      st.plotly_chart(ridge, height=5, width=10) 
 
 st.markdown("""
     <h1 style='text-align: center;'>Visualization Final Project</h1>
