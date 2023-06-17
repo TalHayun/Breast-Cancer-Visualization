@@ -1,8 +1,8 @@
 pandas
-streamlit
+streamlit == 23.1.2
 altair
 seaborn
 plotly.express
-plotly.subplots - upgrade
+plotly.subplots
 Pillow
 lifelines
