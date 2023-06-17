@@ -319,8 +319,13 @@ def figure3():
     # fig.add_trace(marital_graph)
     # fig.update_layout(height=600, width=800, title_text='Combined Graphs')
     # st.plotly_chart(fig)
-    st.write(type(marital_graph))
+    combined_figure = go.Figure()
+    combined_figure.add_traces(age_graph.data)
+    combined_figure.add_traces(race_graph.data)
+    combined_figure.add_traces(marital_graph.data)
+    st.plotly_chart(combined_figure)
 
+      
 st.markdown("""
     <h1 style='text-align: center;'>Visualization Final Project</h1>
     """, unsafe_allow_html=True)
