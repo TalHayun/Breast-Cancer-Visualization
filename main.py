@@ -306,17 +306,32 @@ def figure3():
     marital_graph = create_km_graph('Marital Status', marital_dict)
     # st.plotly_chart(marital_graph)
 
-
+  col1_width = col1.width - 16  # Subtract the default padding value
+  col1_css = f"""
+      <style>
+      div.stButton > button {{
+          width: {col1_width}px !important;
+      }}
+      </style>
+  """
+  col2_css = """
+      <style>
+      div.stButton > button {
+          margin-top: 16px;
+      }
+      </style>
+  """
     col1, col2 = st.columns([3, 1])
 
     with col1:
       st.plotly_chart(age_graph)
       st.plotly_chart(race_graph)
       st.plotly_chart(marital_graph)  
-      
+      st.markdown(col1_css, unsafe_allow_html=True)
+
     with col2:
       st.plotly_chart(ridge)
-   
+      st.markdown(col2_css, unsafe_allow_html=True)   
   
 st.markdown("""
     <h1 style='text-align: center;'>Visualization Final Project</h1>
