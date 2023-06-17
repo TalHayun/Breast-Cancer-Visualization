@@ -4,12 +4,11 @@ import altair as alt
 import seaborn as sns
 import plotly.express as px
 import plotly.graph_objects as go
-import plotly.subplots as sp
-import matplotlib.pyplot as plt
 from PIL import Image
 from matplotlib import cm
 import numpy as np
 from lifelines import KaplanMeierFitter
+from plotly.subplots import make_subplots
 
 image = Image.open('dataset-cover.jpg')
 df = pd.read_csv('Breast_Cancer.csv')
@@ -159,12 +158,8 @@ def build_two_y_axis_chart():
     )
     st.plotly_chart(fig)
 
-def create_ridge(age_dict, race_dict, marital_dict):
-    # Create the main figure
-    fig = go.Figure()
 
-    # Add your existing code for the main graph here...
-    fig = go.Figure()
+def create_ridge(age_dict, race_dict, marital_dict, fig, row_fig, col):
     survived = df[df['Status'] == 'Alive']
 
     age_list = [key for key, val in age_dict.items() if val]
@@ -211,21 +206,16 @@ def create_ridge(age_dict, race_dict, marital_dict):
                 name += f'{marital_status},'
             values = survived_copy['Survival Months']
             name = name[:len(name) - 1]
-            fig.add_trace(go.Violin(x=values, line_color=colors[i], name=name,
-                                    meanline_visible=True))
+            fig.add_trace(
+                go.Violin(x=values, line_color=colors[i], name=name, legendgrouptitle=dict(text="Combined groups"),
+                          meanline_visible=True, legendgroup='1'), row=row_fig, col=col)
             i += 1
 
-    fig.update_layout(legend=dict(traceorder='reversed', itemsizing='constant'))
-    fig.update_traces(orientation='h', side='positive', width=5, points=False)
-    fig.update_layout(xaxis_showgrid=False, xaxis_zeroline=False, xaxis_title='Time to Recover (Months)')
-    fig.update_layout(violinmode='group', width=800, height=800, xaxis_range=[0, 145])
-    fig.update_layout(yaxis=dict(showticklabels=False))  # Remove y-axis tick labels
-    return fig
+    # fig.update_layout(legend=dict(traceorder='reversed', itemsizing='constant'))
+    # fig.update_layout(xaxis_showgrid=False, xaxis_zeroline=False, xaxis_title='Time to Recover (Months)')
 
 
-def create_km_graph(name, name_dict):
-    fig = go.Figure()
-
+def create_km_graph(name, name_dict, fig, row, col):
     survived = df.copy()
     survived['Status'] = survived['Status'].map({'Alive': 1, 'Dead': 0})
 
@@ -237,6 +227,13 @@ def create_km_graph(name, name_dict):
 
         # Define a color palette with different colors
         color_palette = create_virdis(n_colors)
+
+        if name == 'Age':
+            legendgroup = '2'
+        elif name == 'Race':
+            legendgroup = '3'
+        else:
+            legendgroup = '4'
 
         for i, value in enumerate(survived[name].unique()):
             kmf = KaplanMeierFitter()
@@ -257,24 +254,21 @@ def create_km_graph(name, name_dict):
                 x=kmf.survival_function_.index, y=kmf.survival_function_['KM_estimate'],
                 mode='lines',  # Update the mode to 'lines'
                 line=dict(shape='hv', width=3, color=color_palette[i]),
-                name=value
-            ))
+                name=value,
+                legendgroup=legendgroup,
+                legendgrouptitle=dict(text=f'{name}')
+            ), row=row, col=col)
 
-    fig.update_layout(
-        title=f'Kaplan-Meier Recovery Curve By {name}',
-        xaxis_title='Time (Months)',
-        yaxis_title='Recovery Probability ',
-        showlegend=True,
-        
-        legend=dict(
-            orientation="v",
-            traceorder="reversed"
-        )
-      
-    )
-    fig.update_layout(width=700, height=400, xaxis_range=[0, 60], yaxis_range=[0, 0.25])
-
-    return fig
+    # fig.update_layout(
+    #     title=f'Kaplan-Meier Recovery Curve By {name}',
+    #     xaxis_title='Time (Months)',
+    #     yaxis_title='Recovery Probability ',
+    #     showlegend=True,
+    #     legend=dict(
+    #         orientation="v",
+    #         traceorder="reversed"
+    #     )
+    # )
 
 
 def figure3():
@@ -297,27 +291,51 @@ def figure3():
         marital_dict = build_st_query_for_ridge_charts(
             "Marital Status", ['Married', 'Divorced', 'Single ', 'Widowed', 'Separated']
         )
-  
-    ridge = create_ridge(age_dict, race_dict, marital_dict)
-    # st.plotly_chart(ridge)
 
-    age_graph = create_km_graph('Age', age_dict)
-    # st.plotly_chart(age_graph)
+    fig = make_subplots(
+        rows=3, cols=2,
+        subplot_titles=("By Age", "", "By Race", "By Marital Status"),
+        specs=[[{}, {"rowspan": 3}],
+               [{}, None],
+               [{}, None]],
+        print_grid=True
+    )
 
-    race_graph = create_km_graph('Race', race_dict)
-    # st.plotly_chart(race_graph)
+    create_ridge(age_dict, race_dict, marital_dict, fig, 1, 2)
 
-    marital_graph = create_km_graph('Marital Status', marital_dict)
-    # st.plotly_chart(marital_graph)
+    create_km_graph('Age', age_dict, fig, 1, 1)
+    create_km_graph('Race', race_dict, fig, 2, 1)
+    create_km_graph('Marital Status', marital_dict, fig, 3, 1)
 
-    col1, col2 = st.columns([1, 2])
-    with col1:
-      st.plotly_chart(age_graph, use_container_width=True)
-      st.plotly_chart(race_graph, use_container_width=True)
-      st.plotly_chart(marital_graph, use_container_width=True)
-  
-    with col2:
-      st.plotly_chart(ridge, use_container_width=True)
+    # Update x_range
+    fig.update_xaxes(range=[0, 60], row=1, col=1)
+    fig.update_xaxes(range=[0, 60], row=2, col=1)
+    fig.update_xaxes(range=[0, 60], row=3, col=1)
+    fig.update_xaxes(range=[0, 145], row=1, col=2)
+
+    # Update y_range
+    fig.update_yaxes(range=[0, 0.25], row=1, col=1)
+    fig.update_yaxes(range=[0, 0.25], row=2, col=1)
+    fig.update_yaxes(range=[0, 0.25], row=3, col=1)
+    fig.update_yaxes(showticklabels=False, row=1, col=2)
+
+    # Violin positive
+    fig.update_traces(orientation='h', side='positive', width=5, points=False, row=1, col=2)
+
+    fig.update_layout(height=900, width=900,
+                      xaxis1_title='Time (Months)',
+                      xaxis2_title='Time to Recover (Months)',
+                      xaxis3_title='Time (Months)',
+                      xaxis4_title='Time (Months)',
+                      yaxis1_title='Recovery Probability',
+                      yaxis2_title='',
+                      yaxis3_title='Recovery Probability',
+                      yaxis4_title='Recovery Probability',
+                      legend_tracegroupgap=50
+                      )
+
+    st.plotly_chart(fig)
+
 
 st.markdown("""
     <h1 style='text-align: center;'>Visualization Final Project</h1>
