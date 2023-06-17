@@ -306,21 +306,21 @@ def figure3():
     marital_graph = create_km_graph('Marital Status', marital_dict)
     # st.plotly_chart(marital_graph)
 
-  col1_width = col1.width - 6  # Subtract the default padding value
-  col1_css = f"""
-      <style>
-      div.stButton > button {{
-          width: {col1_width}px !important;
-      }}
-      </style>
-  """
-  col2_css = """
-      <style>
-      div.stButton > button {
-          margin-top: 16px;
-      }
-      </style>
-  """
+    col1_width = col1.width - 5  # Subtract the default padding value
+    col1_css = f"""
+        <style>
+        div.stButton > button {{
+            width: {col1_width}px !important;
+        }}
+        </style>
+    """
+    col2_css = """
+        <style>
+        div.stButton > button {{
+            margin-top: 16px;
+        }}
+        </style>
+    """
     col1, col2 = st.columns([3, 1])
 
     with col1:
