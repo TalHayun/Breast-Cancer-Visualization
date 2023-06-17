@@ -315,7 +315,7 @@ def figure3():
     # with col1:
     #   st.plotly_chart(ridge, height=400, width=200) 
     fig = make_subplots(rows=1)
-    fig.add_trace(marital_graph)
+    fig.add_trace(st.plotly_chart(marital_graph))
     fig.update_layout(height=600, width=800, title_text='Combined Graphs')
     st.plotly_chart(fig)
 
