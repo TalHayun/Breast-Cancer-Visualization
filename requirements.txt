@@ -1,5 +1,5 @@
 pandas
-streamlit == 0.69
+streamlit 
 altair
 seaborn
 plotly.express
