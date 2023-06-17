@@ -5,3 +5,4 @@ seaborn
 plotly.express
 Pillow
 lifelines
+plotly.subplots
