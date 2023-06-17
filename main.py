@@ -316,12 +316,7 @@ def figure3():
     # with col1:
     #   st.plotly_chart(ridge, height=400, width=200) 
   
-    fig = sp.make_subplots(rows=1, cols=2)
-    fig.add_trace(st.plotly_chart(age_graph), row=1, col=1)
-    fig.add_trace(st.plotly_chart(age_graph), row=1, col=1)
-    fig.update_layout(height=800, width=600)
-    st.plotly_chart(fig)
-    # st.write(age_graph)
+    st.write(type(age_graph))
 
 
 st.markdown("""
