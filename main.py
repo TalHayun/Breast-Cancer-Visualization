@@ -319,8 +319,8 @@ def figure3():
     # fig.add_trace(marital_graph)
     # fig.update_layout(height=600, width=800, title_text='Combined Graphs')
     # st.plotly_chart(fig)
+    st.write(marital_graph)
 
-st.write(marital_graph)
 st.markdown("""
     <h1 style='text-align: center;'>Visualization Final Project</h1>
     """, unsafe_allow_html=True)
