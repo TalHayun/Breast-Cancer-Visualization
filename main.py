@@ -312,7 +312,7 @@ def figure3():
     static_fig3 = marital_graph
     static_plots = [static_fig1, static_fig2, static_fig3]
 
-    col1, col2 = st.beta_columns([2, 1])
+    col1, col2 = st.columns([2, 1])
   
     with col1:
       st.plotly_chart(dynamic_plot)
