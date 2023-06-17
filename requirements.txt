@@ -4,3 +4,4 @@ altair
 seaborn
 plotly.express
 Pillow
+lifelines
