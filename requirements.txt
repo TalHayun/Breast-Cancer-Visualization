@@ -3,6 +3,5 @@ streamlit
 altair
 seaborn
 plotly.express
-plotly.subplots
 Pillow
 lifelines
