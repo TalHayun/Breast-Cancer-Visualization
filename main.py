@@ -306,12 +306,12 @@ def figure3():
     marital_graph = create_km_graph('Marital Status', marital_dict)
     # st.plotly_chart(marital_graph)
 
-    empty_figure = go.Figure()
-    empty_figure.update_xaxes(showgrid=False, zeroline=False, visible=False)
-    empty_figure.update_yaxes(showgrid=False, zeroline=False, visible=False)
+  
+    fig = sp.make_subplots(rows=1, cols=3)
+    fig = add_trace(age_graph, race_graph, marital_graph)
+    st.plotly_chart(fig)
 
-    col1, col2, col3 = st.columns(3)
-
+    col1, col2, col3 = st.columns(3)  
     with col1:
         st.plotly_chart(age_graph, height=1, width=1)
 
