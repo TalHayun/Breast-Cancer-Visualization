@@ -313,19 +313,16 @@ def figure3():
     col1, col2, col2 = st.columns(3)
 
     with col1:
-      col1_graphs = st.columns(3)
-      with col1_graphs[0]:
         st.plotly_chart(age_graph, height=5, width=10)
-      with col1_graphs[1]:
-        st.plotly_chart(race_graph, height=5, width=10)
-      with col1_graphs[2]:
-        st.plotly_chart(marital_graph, height=5, width=10)  
 
     with col2:
-      st.plotly_chart(empty_figure, height=5, width=10) 
+      st.plotly_chart(race_graph, height=5, width=10) 
       
     with col3:
-      st.plotly_chart(ridge, height=5, width=10) 
+      st.plotly_chart(marital_graph, height=5, width=10) 
+
+    st.plotly_chart(ridge, height=5, width=10) 
+
 
 st.markdown("""
     <h1 style='text-align: center;'>Visualization Final Project</h1>
