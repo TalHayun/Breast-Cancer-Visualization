@@ -3,6 +3,6 @@ streamlit
 altair
 seaborn
 plotly.express
-plotly.subplots
+plotly.subplots == 23.1.2
 Pillow
 lifelines
