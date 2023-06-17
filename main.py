@@ -4,7 +4,7 @@ import altair as alt
 import seaborn as sns
 import plotly.express as px
 import plotly.graph_objects as go
-import plotly.tools as tls
+import plotly.subplots as sp
 import matplotlib.pyplot as plt
 from PIL import Image
 from matplotlib import cm
@@ -316,13 +316,6 @@ def figure3():
     #   st.plotly_chart(marital_graph, height=200, width=300)
     # with col1:
     #   st.plotly_chart(ridge, height=400, width=200) 
-
-    fig, axes = plt.subplots(nrows=1, ncols=1)
-    age_graph_mpl = tls.mpl_to_plotly(fig)
-    # fig.add_traces(race_graph.data, row=1, col=2)
-    # fig.add_traces(marital_graph.data, row=1, col=3)
-    # fig.update_layout(height=600, width=800, title_text='Combined Graphs')
-    st.plotly_chart(age_graph_mpl)
 
 st.markdown("""
     <h1 style='text-align: center;'>Visualization Final Project</h1>
