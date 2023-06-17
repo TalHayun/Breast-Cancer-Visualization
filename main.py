@@ -323,16 +323,16 @@ def figure3():
       unsafe_allow_html=True,
   )
     with col1:
-      st.plotly_chart(age_graph, height=10, width=20)
+      st.plotly_chart(age_graph, height=5, width=10)
       st.markdown("<br>", unsafe_allow_html=True)  
-      st.plotly_chart(race_graph, height=10, width=20)
+      st.plotly_chart(race_graph, height=5, width=10)
       st.markdown("<br>", unsafe_allow_html=True)  
-      st.plotly_chart(marital_graph, height=10, width=20)  
+      st.plotly_chart(marital_graph, height=5, width=10)  
       st.markdown("<br>", unsafe_allow_html=True)  
 
     with col2:
       st.plotly_chart(empty_figure, height=10, width=20)
-      st.plotly_chart(ridge, height=10, width=20)
+      st.plotly_chart(ridge, height=20, width=40)
       st.plotly_chart(empty_figure, height=10, width=20)
 
 st.markdown("""
