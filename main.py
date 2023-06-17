@@ -308,22 +308,14 @@ def figure3():
     marital_graph = create_km_graph('Marital Status', marital_dict)
     # st.plotly_chart(marital_graph)
 
-    # col1, col2 = st.columns([1, 2])
-    # with col2:
-    #   st.plotly_chart(age_graph, height=200, width=300)
-    #   st.plotly_chart(race_graph, height=200, width=300)
-    #   st.plotly_chart(marital_graph, height=200, width=300)
-    # with col1:
-    #   st.plotly_chart(ridge, height=400, width=200) 
-  
-    col1, col2 = col1, col2 = st.columns([3, 1])
-    with col1:
-      st.plotly_chart(age_graph)
-      st.plotly_chart(race_graph)
-      st.plotly_chart(marital_graph)
-      
+    col1, col2 = st.columns([1, 2])
     with col2:
-      st.plotly_chart(ridge)
+      st.plotly_chart(age_graph, height=200, width=300)
+      st.plotly_chart(race_graph, height=200, width=300)
+      st.plotly_chart(marital_graph, height=200, width=300)
+    with col1:
+      st.plotly_chart(ridge, height=400, width=200) 
+  
 
 
 st.markdown("""
