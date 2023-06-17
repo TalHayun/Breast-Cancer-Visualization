@@ -306,6 +306,10 @@ def figure3():
     marital_graph = create_km_graph('Marital Status', marital_dict)
     # st.plotly_chart(marital_graph)
 
+    empty_figure = go.Figure()
+    empty_figure.update_xaxes(showgrid=False, zeroline=False, visible=False)
+    empty_figure.update_yaxes(showgrid=False, zeroline=False, visible=False)
+
     col1, col2 = st.columns([3, 3])
 
     with col1:
@@ -317,9 +321,9 @@ def figure3():
       st.markdown("<br>", unsafe_allow_html=True)  
 
     with col2:
-      st.plotly_chart(go.Figure())
-      st.plotly_chart(ridge)
-      st.plotly_chart(go.Figure())
+      st.plotly_chart(empty_figure)
+      st.plotly_chart(ridge, height=20, width=50 )
+      st.plotly_chart(empty_figure)
 
 st.markdown("""
     <h1 style='text-align: center;'>Visualization Final Project</h1>
