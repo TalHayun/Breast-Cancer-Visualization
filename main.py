@@ -1,3 +1,5 @@
+pip install streamlit --upgrade
+
 import pandas as pd
 import streamlit as st
 import altair as alt
@@ -293,7 +295,7 @@ def figure3():
         marital_dict = build_st_query_for_ridge_charts(
             "Marital Status", ['Married', 'Divorced', 'Single ', 'Widowed', 'Separated']
         )
-
+  
     ridge = create_ridge(age_dict, race_dict, marital_dict)
     # st.plotly_chart(ridge)
 
