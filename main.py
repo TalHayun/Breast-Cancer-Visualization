@@ -310,7 +310,7 @@ def figure3():
     empty_figure.update_xaxes(showgrid=False, zeroline=False, visible=False)
     empty_figure.update_yaxes(showgrid=False, zeroline=False, visible=False)
 
-    col1, col2 = st.columns(2)
+    col1, col2, col2 = st.columns(3)
 
     with col1:
       col1_graphs = st.columns(3)
@@ -322,6 +322,8 @@ def figure3():
         st.plotly_chart(marital_graph, height=5, width=10)  
 
     with col2:
+      st.plotly_chart(empty_figure) 
+    with col3:
       st.plotly_chart(ridge, height=5, width=10) 
 
 st.markdown("""
