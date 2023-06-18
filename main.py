@@ -97,7 +97,6 @@ def build_heatmap():
     bar_fig.update_layout(
         yaxis=dict(title=dict(text= "Mortality Rate (%)", font=dict(size=20))),
         xaxis=dict(title=dict(text=f'{feature1}', font=dict(size=20))))
-    bar_fig.update_layout(bargap = 0.8)
     st.plotly_chart(bar_fig)
 
 
@@ -215,92 +214,60 @@ def create_ridge(age_dict, race_dict, marital_dict, fig, row_fig, col):
     # fig.update_layout(xaxis_showgrid=False, xaxis_zeroline=False, xaxis_title='Time to Recover (Months)')
 
 
-# def create_km_graph(name, name_dict, fig, row, col):
-#     survived = df.copy()
-#     survived['Status'] = survived['Status'].map({'Alive': 1, 'Dead': 0})
+def create_km_graph(name, name_dict, fig, row, col):
+    survived = df.copy()
+    survived['Status'] = survived['Status'].map({'Alive': 1, 'Dead': 0})
 
-#     name_list = [key for key, val in name_dict.items() if val]
-#     if name_list:
-#         survived = survived[survived[name].isin(name_list)]
+    name_list = [key for key, val in name_dict.items() if val]
+    if name_list:
+        survived = survived[survived[name].isin(name_list)]
 
-#         n_colors = len(survived[name].unique())
+        n_colors = len(survived[name].unique())
 
-#         # Define a color palette with different colors
-#         color_palette = create_virdis(n_colors)
+        # Define a color palette with different colors
+        color_palette = create_virdis(n_colors)
 
-#         if name == 'Age':
-#             legendgroup = '2'
-#         elif name == 'Race':
-#             legendgroup = '3'
-#         else:
-#             legendgroup = '4'
+        if name == 'Age':
+            legendgroup = '2'
+        elif name == 'Race':
+            legendgroup = '3'
+        else:
+            legendgroup = '4'
 
-#         for i, value in enumerate(survived[name].unique()):
-#             kmf = KaplanMeierFitter()
+        for i, value in enumerate(survived[name].unique()):
+            kmf = KaplanMeierFitter()
 
-#             # Filter data for the current value
-#             group_survived = survived[survived[name] == value]
+            # Filter data for the current value
+            group_survived = survived[survived[name] == value]
 
-#             survival_time = group_survived['Survival Months']
-#             status = group_survived['Status']
+            survival_time = group_survived['Survival Months']
+            status = group_survived['Status']
 
-#             kmf.fit(survival_time, status)
-#             survival_probs = kmf.survival_function_
+            kmf.fit(survival_time, status)
+            survival_probs = kmf.survival_function_
 
-#             # Flip the survival probabilities
-#             survival_probs['KM_estimate'] = 1 - survival_probs['KM_estimate']
+            # Flip the survival probabilities
+            survival_probs['KM_estimate'] = 1 - survival_probs['KM_estimate']
 
-#             fig.add_trace(go.Scatter(
-#                 x=kmf.survival_function_.index, y=kmf.survival_function_['KM_estimate'],
-#                 mode='lines',  # Update the mode to 'lines'
-#                 line=dict(shape='hv', width=3, color=color_palette[i]),
-#                 name=value,
-#                 legendgroup=legendgroup,
-#                 legendgrouptitle=dict(text=f'{name}')
-#             ), row=row, col=col)
-def create_km_graph(name, name_dict, fig, row, col, legend_title):
-  survived = df.copy()
-  survived['Status'] = survived['Status'].map({'Alive': 1, 'Dead': 0})
+            fig.add_trace(go.Scatter(
+                x=kmf.survival_function_.index, y=kmf.survival_function_['KM_estimate'],
+                mode='lines',  # Update the mode to 'lines'
+                line=dict(shape='hv', width=3, color=color_palette[i]),
+                name=value,
+                legendgroup=legendgroup,
+                legendgrouptitle=dict(text=f'{name}')
+            ), row=row, col=col)
 
-  name_list = [key for key, val in name_dict.items() if val]
-  if name_list:
-      survived = survived[survived[name].isin(name_list)]
-
-      n_colors = len(survived[name].unique())
-
-      # Define a color palette with different colors
-      color_palette = create_virdis(n_colors)
-
-      if name == 'Age':
-          legendgroup = '2'
-      elif name == 'Race':
-          legendgroup = '3'
-      else:
-          legendgroup = '4'
-
-      for i, value in enumerate(survived[name].unique()):
-          kmf = KaplanMeierFitter()
-
-          # Filter data for the current value
-          group_survived = survived[survived[name] == value]
-
-          survival_time = group_survived['Survival Months']
-          status = group_survived['Status']
-
-          kmf.fit(survival_time, status)
-          survival_probs = kmf.survival_function_
-
-          # Flip the survival probabilities
-          survival_probs['KM_estimate'] = 1 - survival_probs['KM_estimate']
-
-          fig.add_trace(go.Scatter(
-              x=kmf.survival_function_.index, y=kmf.survival_function_['KM_estimate'],
-              mode='lines',  # Update the mode to 'lines'
-              line=dict(shape='hv', width=3, color=color_palette[i]),
-              name=value,
-              legendgroup=legendgroup,
-              legendgrouptitle=dict(text=legend_title)
-          ), row=row, col=col)         
+    # fig.update_layout(
+    #     title=f'Kaplan-Meier Recovery Curve By {name}',
+    #     xaxis_title='Time (Months)',
+    #     yaxis_title='Recovery Probability ',
+    #     showlegend=True,
+    #     legend=dict(
+    #         orientation="v",
+    #         traceorder="reversed"
+    #     )
+    # )
 
 
 def figure3():
@@ -335,9 +302,9 @@ def figure3():
 
     create_ridge(age_dict, race_dict, marital_dict, fig, 1, 2)
 
-    create_km_graph('Age', age_dict, fig, 1, 1, legend_title='Age')
-    create_km_graph('Race', race_dict, fig, 2, 1, legend_title='Race')
-    create_km_graph('Marital Status', marital_dict, fig, 3, 1, legend_title='Marital Status')
+    create_km_graph('Age', age_dict, fig, 1, 1)
+    create_km_graph('Race', race_dict, fig, 2, 1)
+    create_km_graph('Marital Status', marital_dict, fig, 3, 1)
 
     # Update x_range
     fig.update_xaxes(range=[0, 60], row=1, col=1)
@@ -353,8 +320,20 @@ def figure3():
 
     # Violin positive
     fig.update_traces(orientation='h', side='positive', width=5, points=False, row=1, col=2)
-    st.plotly_chart(fig)
 
+    fig.update_layout(height=900, width=900,
+                      xaxis1_title='Time (Months)',
+                      xaxis2_title='Time to Recover (Months)',
+                      xaxis3_title='Time (Months)',
+                      xaxis4_title='Time (Months)',
+                      yaxis1_title='Recovery Probability',
+                      yaxis2_title='',
+                      yaxis3_title='Recovery Probability',
+                      yaxis4_title='Recovery Probability',
+                      legend_tracegroupgap=50
+                      )
+
+    st.plotly_chart(fig)
 
 
 st.markdown("""
