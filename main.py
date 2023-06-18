@@ -121,7 +121,7 @@ def build_heatmap():
     fig.update_layout(
     yaxis=dict(title=dict(text=f"<span style='font-weight:bold'>{feature1}</span>", font=dict(size=24))),
     xaxis=dict(title=dict(text=f"<b>{feature2}</b>", font=dict(size=24))),
-    coloraxis_colorbar=dict(title=dict(text='Mortality <br> Rate (%)', font=dict(size=22)))
+    coloraxis_colorbar=dict(title=dict(text='<b>Mortality<br>Rate (%)<b>', font=dict(size=22)))
 )
     st.plotly_chart(fig)
 
