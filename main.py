@@ -127,6 +127,39 @@ def build_heatmap():
     st.plotly_chart(fig)
 
 
+# def build_two_y_axis_chart():
+#     st.subheader('Malignancy Rate and Average Tumor Size by Race')
+#     fig = go.Figure()
+
+#     fig.add_trace(go.Bar(
+#         x=grouped_df['Race'],
+#         y=grouped_df['malignancy_rate'],
+#         name='Malignancy Rate',
+#         yaxis='y',
+#         offsetgroup=0,
+#         width=0.25,
+#         marker=dict(color='salmon')
+#     ))
+
+#     fig.add_trace(go.Bar(
+#         x=grouped_df['Race'],
+#         y=grouped_df['avg_tumor_size'],
+#         name='Average Tumor Size',
+#         yaxis='y2',
+#         offsetgroup=1,
+#         width=0.25,
+#         marker=dict(color='lightseagreen')
+#     ))
+
+#     fig.update_layout(
+#         xaxis=dict(title='Race', title_font=dict(size=20)),
+#         yaxis=dict(title='Malignancy Rate (%)', title_font=dict(size=16)),
+#         yaxis2=dict(title='Average Tumor Size (mm)', overlaying='y', side='right', title_font=dict(size=16)),
+#         barmode='group',
+#         bargap=0.5  # Adjust the spacing between the bars
+#     )
+#     st.plotly_chart(fig)
+
 def build_two_y_axis_chart():
     st.subheader('Malignancy Rate and Average Tumor Size by Race')
     fig = go.Figure()
@@ -153,13 +186,12 @@ def build_two_y_axis_chart():
 
     fig.update_layout(
         xaxis=dict(title='Race', title_font=dict(size=20)),
-        yaxis=dict(title='Malignancy Rate (%)', title_font=dict(size=16)),
-        yaxis2=dict(title='Average Tumor Size (mm)', overlaying='y', side='right', title_font=dict(size=16)),
+        yaxis=dict(title='Malignancy Rate (%)', title_font=dict(size=20)),
+        yaxis2=dict(title='Average Tumor Size (mm)', overlaying='y', side='right', title_font=dict(size=20)),
         barmode='group',
         bargap=0.5  # Adjust the spacing between the bars
     )
     st.plotly_chart(fig)
-
 
 def create_ridge(age_dict, race_dict, marital_dict, fig, row_fig, col):
     survived = df[df['Status'] == 'Alive']
