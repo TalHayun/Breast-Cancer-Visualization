@@ -118,7 +118,7 @@ def build_heatmap():
     fig.update_xaxes(side="top")
     fig.update_layout(height=600, width=800)
     fig.update_layout(
-    yaxis=dict(title=dict(text=f"{feature1}", font=dict(size=24))),
+    yaxis=dict(title=dict(text=f"<b>{feature1}</b>", font=dict(size=24))),
     xaxis=dict(title=dict(text=f"{feature2}", font=dict(size=24))),
     coloraxis_colorbar=dict(title=dict(text='Mortality rate (%)', font=dict(size=22)))
 )
