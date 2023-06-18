@@ -272,7 +272,7 @@ def create_km_graph(name, name_dict, fig, row, col):
 
 
 def figure3():
-    st.subheader('Women with which characteristics are more likely to have a short recovery from breast cancer?')
+    st.markdown("<h2 style='text-align: center;'>Women with which characteristics are more likely to have a short recovery from breast cancer?</h2>", unsafe_allow_html=True)
     st.markdown('### Select Characteristics')
     col1, col2, col3 = st.columns(3)
 
