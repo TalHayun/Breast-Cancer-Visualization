@@ -258,16 +258,6 @@ def create_km_graph(name, name_dict, fig, row, col):
                 legendgrouptitle=dict(text=f'{name}')
             ), row=row, col=col)
 
-    # fig.update_layout(
-    #     title=f'Kaplan-Meier Recovery Curve By {name}',
-    #     xaxis_title='Time (Months)',
-    #     yaxis_title='Recovery Probability ',
-    #     showlegend=True,
-    #     legend=dict(
-    #         orientation="v",
-    #         traceorder="reversed"
-    #     )
-    # )
 
 
 def figure3():
@@ -332,6 +322,30 @@ def figure3():
                       yaxis4_title='Recovery Probability',
                       legend_tracegroupgap=50
                       )
+    fig.update_layout(
+        legend=dict(
+            x=0.5,  # X-coordinate for the first legend group
+            y=0.95,  # Y-coordinate for the first legend group
+            xanchor='center',  # Set the x-anchor to center
+            yanchor='top',  # Set the y-anchor to top
+            tracegroupgap=100,  # Spacing between legend groups
+        ),
+        legend2=dict(
+            x=0.9,  # X-coordinate for the second legend group
+            y=0.6,  # Y-coordinate for the second legend group
+            xanchor='center',  # Set the x-anchor to center
+            yanchor='top',  # Set the y-anchor to top
+            tracegroupgap=100,  # Spacing between legend groups
+        ),
+        legend3=dict(
+            x=0.5,  # X-coordinate for the third legend group
+            y=0.25,  # Y-coordinate for the third legend group
+            xanchor='center',  # Set the x-anchor to center
+            yanchor='top',  # Set the y-anchor to top
+            tracegroupgap=100,  # Spacing between legend groups
+        ),
+    )
+
 
     st.plotly_chart(fig)
 
