@@ -257,14 +257,17 @@ def create_km_graph(name, name_dict, fig, row, col):
                 legendgroup=legendgroup,
                 legendgrouptitle=dict(text=f'{name}')
             ), row=row, col=col)
-            fig.add_trace(go.Scatter(
-                x=[60], y=[0.24 - i * 0.04],
-                mode='lines',
-                line=dict(shape='hv', width=3, color=color_palette[i]),
-                name=f'Fitted: {value}',
-                showlegend=False
-            ), row=row, col=col)
 
+    # fig.update_layout(
+    #     title=f'Kaplan-Meier Recovery Curve By {name}',
+    #     xaxis_title='Time (Months)',
+    #     yaxis_title='Recovery Probability ',
+    #     showlegend=True,
+    #     legend=dict(
+    #         orientation="v",
+    #         traceorder="reversed"
+    #     )
+    # )
 
 
 def figure3():
@@ -329,8 +332,6 @@ def figure3():
                       yaxis4_title='Recovery Probability',
                       legend_tracegroupgap=50
                       )
-
-
 
     st.plotly_chart(fig)
 
