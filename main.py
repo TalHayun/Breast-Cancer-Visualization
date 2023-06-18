@@ -257,6 +257,13 @@ def create_km_graph(name, name_dict, fig, row, col):
                 legendgroup=legendgroup,
                 legendgrouptitle=dict(text=f'{name}')
             ), row=row, col=col)
+            fig.add_trace(go.Scatter(
+                x=[60], y=[0.24 - i * 0.04],
+                mode='lines',
+                line=dict(shape='hv', width=3, color=color_palette[i]),
+                name=f'Fitted: {value}',
+                showlegend=False
+            ), row=row, col=col)
 
 
 
