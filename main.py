@@ -120,7 +120,7 @@ def build_heatmap():
     fig.update_layout(
     yaxis=dict(title=dict(text=f"<b>{feature1}</b>", font=dict(size=24))),
     xaxis=dict(title=dict(text=f"<b>{feature2}</b>", font=dict(size=24))),
-    coloraxis_colorbar=dict(title=dict(text='Mortality rate (%)', font=dict(size=22)))
+    coloraxis_colorbar=dict(title=dict(text='Mortality rate (%)', font=dict(size=30)))
 )
     # Display the heatmap in Streamlit
     st.plotly_chart(fig)
