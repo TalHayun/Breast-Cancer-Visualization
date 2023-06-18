@@ -339,7 +339,7 @@ def figure3():
 st.markdown("""
     <h1 style='text-align: center; font-size: 60px;'>Visualization Final Project</h1>
     """, unsafe_allow_html=True)
-st.markdown("<h2 style='text-align: center;'>Breast Cancer</h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='text-align: center; font-size: 45px;'>Breast Cancer</h2>", unsafe_allow_html=True)
 st.image(image)
 build_heatmap()
 build_two_y_axis_chart()
