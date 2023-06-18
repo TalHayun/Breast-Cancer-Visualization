@@ -323,21 +323,21 @@ def figure3():
                       legend_tracegroupgap=50
                       )
     fig.update_layout(
-        legend=dict(
+        legend2=dict(
             x=0.5,  # X-coordinate for the first legend group
             y=0.95,  # Y-coordinate for the first legend group
             xanchor='center',  # Set the x-anchor to center
             yanchor='top',  # Set the y-anchor to top
             tracegroupgap=100,  # Spacing between legend groups
         ),
-        legend2=dict(
+        legend3=dict(
             x=0.9,  # X-coordinate for the second legend group
             y=0.6,  # Y-coordinate for the second legend group
             xanchor='center',  # Set the x-anchor to center
             yanchor='top',  # Set the y-anchor to top
             tracegroupgap=100,  # Spacing between legend groups
         ),
-        legend3=dict(
+        legend4=dict(
             x=0.5,  # X-coordinate for the third legend group
             y=0.25,  # Y-coordinate for the third legend group
             xanchor='center',  # Set the x-anchor to center
