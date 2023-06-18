@@ -258,6 +258,14 @@ def create_km_graph(name, name_dict, fig, row, col):
                 legendgroup=legendgroup,
                 legendgrouptitle=dict(text=f'{name}')
             ), row=row, col=col)
+            fig.add_annotation(
+                xref='paper', yref='paper',
+                x=0.99, y=0.95 - i * 0.05,
+                text=value,
+                showarrow=False,
+                align='right',
+                font=dict(size=10)
+            )
 
     # fig.update_layout(
     #     title=f'Kaplan-Meier Recovery Curve By {name}',
