@@ -151,9 +151,9 @@ def build_two_y_axis_chart():
     ))
 
     fig.update_layout(
-        xaxis=dict(title='Race', title_font=dict(size=20)),
-        yaxis=dict(title='<b>Malignancy Rate (%)</b>', title_font=dict(size=18)),
-        yaxis2=dict(title='<b>Average Tumor Size (mm)<b>', overlaying='y', side='right', title_font=dict(size=18)),
+        xaxis=dict(title='<b>Race<b>', title_font=dict(size=20)),
+        yaxis=dict(title='<b>Malignancy Rate (%)</b>', title_font=dict(size=16)),
+        yaxis2=dict(title='<b>Average Tumor Size (mm)<b>', overlaying='y', side='right', title_font=dict(size=16)),
         barmode='group',
         bargap=0.5  # Adjust the spacing between the bars
     )
