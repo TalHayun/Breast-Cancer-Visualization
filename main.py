@@ -258,14 +258,7 @@ def create_km_graph(name, name_dict, fig, row, col):
                 legendgroup=legendgroup,
                 legendgrouptitle=dict(text=f'{name}')
             ), row=row, col=col)
-            fig.add_annotation(
-                xref='paper', yref='paper',
-                x=0.99, y=0.95 - i * 0.05,
-                text=value,
-                showarrow=False,
-                align='right',
-                font=dict(size=10)
-            )
+          
 
     # fig.update_layout(
     #     title=f'Kaplan-Meier Recovery Curve By {name}',
@@ -328,7 +321,7 @@ def figure3():
     fig.update_yaxes(showticklabels=False, row=1, col=2)
 
     # Violin positive
-    fig.update_traces(orientation='h', side='positive', width=5, points=False, row=1, col=2,showlegend=True)
+    fig.update_traces(orientation='h', side='positive', width=5, points=False, row=1, col=2)
     st.plotly_chart(fig)
 
 
