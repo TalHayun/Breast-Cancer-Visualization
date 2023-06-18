@@ -329,22 +329,7 @@ def figure3():
                       yaxis4_title='Recovery Probability',
                       legend_tracegroupgap=50
                       )
-    fig.update_layout(
-        legend=dict(
-            x=0.5,  # X-coordinate for the first legend group
-            y=0.95,  # Y-coordinate for the first legend group
-            xanchor='center',  # Set the x-anchor to center
-            yanchor='top',  # Set the y-anchor to top
-            tracegroupgap=100,  # Spacing between legend groups
-        ),
-        legend2=dict(
-            x=0.05,  # X-coordinate for the second legend group
-            y=0.75,  # Y-coordinate for the second legend group
-            xanchor='left',  # Set the x-anchor to left
-            yanchor='top',  # Set the y-anchor to top
-            tracegroupgap=100,  # Spacing between legend groups
-        )
-    )
+
 
 
     st.plotly_chart(fig)
