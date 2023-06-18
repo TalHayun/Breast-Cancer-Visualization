@@ -250,7 +250,7 @@ def create_km_graph(name, name_dict, fig, row, col):
             # Flip the survival probabilities
             survival_probs['KM_estimate'] = 1 - survival_probs['KM_estimate']
 
-            fig.add_trace(go.Scatter(
+            fig.append_trace(go.Scatter(
                 x=kmf.survival_function_.index, y=kmf.survival_function_['KM_estimate'],
                 mode='lines',  # Update the mode to 'lines'
                 line=dict(shape='hv', width=3, color=color_palette[i]),
