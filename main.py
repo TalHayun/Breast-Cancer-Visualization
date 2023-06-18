@@ -329,10 +329,7 @@ def figure3():
     fig.update_yaxes(showticklabels=False, row=1, col=2)
 
     # Violin positive
-    # fig.update_traces(orientation='h', side='positive', width=5, points=False, row=1, col=2)
-    # st.plotly_chart(fig)
-
-    # Display the plot using Streamlit
+    fig.update_traces(orientation='h', side='positive', width=5, points=False, row=1, col=2)
     st.plotly_chart(fig)
 
 
