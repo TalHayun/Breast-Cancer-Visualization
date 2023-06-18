@@ -95,8 +95,8 @@ def build_heatmap():
           marker=dict(color='salmon')
       ))
     bar_fig.update_layout(
-    yaxis=dict(title=dict(text="<b>Mortality Rate (%)</b>", font=dict(size=20))),
-    xaxis=dict(title=dict(text=f"<b>{feature1}</b>", font=dict(size=20)), tickfont=dict(size=20)),
+    yaxis=dict(title=dict(text="<b>Mortality Rate (%)</b>", font=dict(size=24))),
+    xaxis=dict(title=dict(text=f"<b>{feature1}</b>", font=dict(size=20)), tickfont=dict(size=24)),
     yaxis_tickfont=dict(size=18),
     xaxis_tickfont=dict(size=18))
     st.plotly_chart(bar_fig)
@@ -119,7 +119,7 @@ def build_heatmap():
     fig.update_layout(height=600, width=800)
     fig.update_layout(
     yaxis=dict(title=dict(text=f"<b>{feature1}</b>", font=dict(size=24))),
-    xaxis=dict(title=dict(text=f"{feature2}", font=dict(size=24))),
+    xaxis=dict(title=dict(text=f"<b>{feature2}</b>", font=dict(size=24))),
     coloraxis_colorbar=dict(title=dict(text='Mortality rate (%)', font=dict(size=22)))
 )
     # Display the heatmap in Streamlit
