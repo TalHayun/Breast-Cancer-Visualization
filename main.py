@@ -78,7 +78,7 @@ def create_virdis(num):
 
 
 def build_heatmap():
-    st.subheader('Impact of demographic characteristics on the mortality of women with breast cancer in America')
+    st.markdown("<h3 style='text-align: center;'>Impact of demographic characteristics on the mortality of women with breast cancer in America</h3>", unsafe_allow_html=True)
 
     col1 = st.columns(1)
 
