@@ -321,17 +321,17 @@ def figure3():
     # Violin positive
     fig.update_traces(orientation='h', side='positive', width=5, points=False, row=1, col=2)
 
-    # fig.update_layout(height=900, width=900,
-    #                   xaxis1_title='Time (Months)',
-    #                   xaxis2_title='Time to Recover (Months)',
-    #                   xaxis3_title='Time (Months)',
-    #                   xaxis4_title='Time (Months)',
-    #                   yaxis1_title='Recovery Probability',
-    #                   yaxis2_title='',
-    #                   yaxis3_title='Recovery Probability',
-    #                   yaxis4_title='Recovery Probability',
-    #                   legend_tracegroupgap=50
-    #                   )
+    fig.update_layout(height=900, width=900,
+                      xaxis1_title='Time (Months)',
+                      xaxis2_title='Time to Recover (Months)',
+                      xaxis3_title='Time (Months)',
+                      xaxis4_title='Time (Months)',
+                      yaxis1_title='Recovery Probability',
+                      yaxis2_title='',
+                      yaxis3_title='Recovery Probability',
+                      yaxis4_title='Recovery Probability',
+                      legend_tracegroupgap=50
+                      )
 
     st.plotly_chart(fig)
 
