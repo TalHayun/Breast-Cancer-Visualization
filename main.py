@@ -241,6 +241,8 @@ def create_ridge(age_dict, race_dict, marital_dict, fig, row_fig, col):
             fig.add_annotation(annotation, row=row_fig, col=col)
 
             i += 1
+    else:
+        fig.add_trace(go.Violin(visible='legendonly', showlegend=False))
 
 
 
@@ -249,6 +251,14 @@ def create_km_graph(name, name_dict, fig, row, col):
     survived['Status'] = survived['Status'].map({'Alive': 1, 'Dead': 0})
 
     name_list = [key for key, val in name_dict.items() if val]
+
+    if name == 'Age':
+        legendgroup = '2'
+    elif name == 'Race':
+        legendgroup = '3'
+    else:
+        legendgroup = '4'
+
     if name_list:
         survived = survived[survived[name].isin(name_list)]
 
@@ -256,13 +266,6 @@ def create_km_graph(name, name_dict, fig, row, col):
 
         # Define a color palette with different colors
         color_palette = create_virdis(n_colors)
-
-        if name == 'Age':
-          legendgroup = '2'
-        elif name == 'Race':
-          legendgroup = '3'
-        else:
-            legendgroup = '4'
 
         for i, value in enumerate(survived[name].unique()):
             kmf = KaplanMeierFitter()
@@ -288,6 +291,17 @@ def create_km_graph(name, name_dict, fig, row, col):
                 legendgrouptitle=dict(text=f'{name}', font=dict(size=18))
             ), row=row, col=col)
 
+    else:
+        # Add a dummy trace with invisible lines and markers to represent the legend title
+        fig.add_trace(go.Scatter(
+            x=[0],
+            y=[0],
+            marker=dict(color='rgba(0, 0, 0, 0)', opacity=0),
+            name="",
+            legendgroup=legendgroup,
+            showlegend=True,
+            legendgrouptitle=dict(text=f'{name}', font=dict(size=18))
+        ), row=row, col=col)
 
 def figure3():
     st.markdown("<h3 style='text-align: left;'>Women with which characteristics are more likely to have a short recovery from breast cancer?</h3>", unsafe_allow_html=True)
@@ -328,6 +342,12 @@ def figure3():
     create_km_graph('Race', race_dict, fig, 2, 1)
     create_km_graph('Marital Status', marital_dict, fig, 3, 1)
 
+    age_list = [key for key, val in age_dict.items() if val]
+    if age_list:
+        tracegroupgap = 180
+    else:
+        tracegroupgap = 220
+
     # Update x_range
     fig.update_xaxes(range=[0, 60], row=1, col=1)
     fig.update_xaxes(range=[0, 60], row=2, col=1)
@@ -352,7 +372,7 @@ def figure3():
                       yaxis2_title='',
                       yaxis3=dict(title='<b>Recovery Probability<b>', title_font=dict(size=18)),
                       yaxis4=dict(title='<b>Recovery Probability<b>', title_font=dict(size=18)),
-                      legend_tracegroupgap=180,
+                      legend_tracegroupgap=tracegroupgap,
                       legend_font=dict(size=14),  # Increase the legends' font size
                       legend_x=-0.35)
 
